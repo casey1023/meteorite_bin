@@ -9,10 +9,9 @@ from ball import *
 def randinscreen():
     return (random.randint(0,SCREEN_WIDTH),random.randint(0,SCREEN_HEIGHT))
 
-def play(screen):
+def play(screen, call_state):
     fpsClock = pygame.time.Clock()
     balls=[]
-    FPS=60
     life=5
     running = True
     my_font = pygame.font.SysFont(font__, 30)
@@ -20,23 +19,21 @@ def play(screen):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    pause_menu()
+                    #important stop
+                    return 0
                 elif event.key == pygame.K_RIGHT:
                     b=ball(randinscreen(),screen)
                     balls.append(b)
             elif event.type == pygame.QUIT:
                 running = False
-                return "quit"
+                return {'from': 'play', 'to': 'quit'}
 
         screen.fill(BLACK)
         mp=pygame.mouse.get_pos()
         if life!=0:
             pygame.draw.circle(screen,WHITE,mp,life+5,0)
         else:
-            option=end_menu(screen) #1: replay 0:return to main menu
-            if option:
-                play()
-            return 0
+            return {'from': 'play', 'to': 'end_menu'}
 
         for i in balls:
             i.move(mp)

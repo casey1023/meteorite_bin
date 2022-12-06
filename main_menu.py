@@ -4,9 +4,9 @@ from gameinit import *
 from constant import *
 from play import *
 
-def main_menu(screen):
+def main_menu(screen, call_state):
     fpsClock = pygame.time.Clock()
-    FPS=60
+    
     screen.fill(BLACK)
     font = pygame.font.SysFont(font__, 50)
     title = font.render("Meteorite Bin", True, WHITE)
@@ -24,13 +24,11 @@ def main_menu(screen):
             if event.type == pygame.MOUSEBUTTONUP:
                 pos = pygame.mouse.get_pos()
                 if start_button.isOver(pos):
-                    ret=play(screen)
-                    if ret=="quit":
-                        return 0
+                    return {'from': 'main_menu', 'to': 'play'}
                 elif setting_button.isOver(pos):
-                    setting_menu()
+                    return {'from': 'main_menu', 'to': 'setting_button'}
                 elif quit_button.isOver(pos):
-                    return 0
+                    return {'from': "main_menu", 'to': 'quit'}
         mouse_pos = pygame.mouse.get_pos()
         start_button.draw(screen,mouse_pos)
         setting_button.draw(screen,mouse_pos)

@@ -4,9 +4,7 @@ from button import *
 from button import *
 from play import *
 
-def end_menu(screen):
-    fpsClock = pygame.time.Clock()
-    FPS=60
+def end_menu(screen, caller_state):
     screen.fill(BLACK)
     font = pygame.font.SysFont(font__, 50)
     title = font.render("You Die", True, WHITE)
@@ -24,19 +22,16 @@ def end_menu(screen):
             if event.type == pygame.MOUSEBUTTONUP:
                 pos = pygame.mouse.get_pos()
                 if start_button.isOver(pos):
-                    ret=play(screen)
-                    if ret=="quit":
-                        return 0
+                    return {'from': 'end_menu', 'to': 'play'}
                 elif setting_button.isOver(pos):
-                    setting_menu()
+                    return {'from': 'end_menu', 'to': 'setting_menu'}
                 elif quit_button.isOver(pos):
-                    return 0
+                    return {'from': 'end_menu', 'to': 'quit'}
         mouse_pos = pygame.mouse.get_pos()
         start_button.draw(screen,mouse_pos)
         setting_button.draw(screen,mouse_pos)
         quit_button.draw(screen,mouse_pos)
 
         pygame.display.flip()
-        fpsClock.tick(FPS)
 
         ###############DNF
