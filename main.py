@@ -18,7 +18,6 @@ if __name__ == '__main__':
             return_state = main_menu(screen, current_state)
         
         elif current_state['to'] == 'play':
-            print(123)
             return_state = play(screen, current_state)
         
         elif current_state['to'] == 'setting':
