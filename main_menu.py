@@ -19,16 +19,17 @@ def main_menu(screen, call_state):
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                
-                return 0
+                return {'from': "main_menu", 'to': 'quit'}
             if event.type == pygame.MOUSEBUTTONUP:
                 pos = pygame.mouse.get_pos()
                 if start_button.isOver(pos):
                     return {'from': 'main_menu', 'to': 'play'}
                 elif setting_button.isOver(pos):
-                    return {'from': 'main_menu', 'to': 'setting_button'}
+                    print(123)
+                    return {'from': 'main_menu', 'to': 'setting'}
                 elif quit_button.isOver(pos):
                     return {'from': "main_menu", 'to': 'quit'}
+        
         mouse_pos = pygame.mouse.get_pos()
         start_button.draw(screen,mouse_pos)
         setting_button.draw(screen,mouse_pos)
