@@ -10,7 +10,7 @@ def setting_menu(screen, call_state):
     text_rect = title.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/6))
     screen.blit(title, text_rect)
 
-    back_button=button(SCREEN_WIDTH/2,SCREEN_HEIGHT/7*3,SCREEN_WIDTH/3,SCREEN_HEIGHT/8,text="back")
+    back_button=button(SCREEN_WIDTH/2,SCREEN_HEIGHT/7*3,SCREEN_WIDTH/3,SCREEN_HEIGHT/8,text="Back")
     
     while True:
         for event in pygame.event.get():

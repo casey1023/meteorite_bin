@@ -1,19 +1,23 @@
 import pygame
 import constant
 from pygame.math import Vector2
+from time import time
 
 class ball():
-    def __init__(self, position,screen, radius=5):
+    def __init__(self,screen, position,init_v=0, radius=5):
         self.position = position
         self.radius = radius
-        self.v = Vector2(0,0)
+        if init_v:
+            self.v=Vector2(init_v)
+        else:
+            self.v = Vector2(0,0)
         self.screen=screen
+        self.t=time()
+        self.invincible=True
     def __str__(self):
-        for i in range(len(balls)):
-            if self==balls[i]:
-                return "id "+str(i)
+        return "Position : "+str(self.position)+"\nV : "+str(self.v)
     def move(self,pos):
-        mp=Vector2(pygame.mouse.get_pos())
+        mp=Vector2(pos)
         p=Vector2(self.position)
         d=1/ (mp-p).length()**2 * (mp-p).normalize()*1000
         self.v+=d
@@ -25,3 +29,7 @@ class ball():
         pygame.draw.circle(self.screen,constant.RED,self.position,self.radius,0)
     def iscolide(self,pos2,r2):
         return Vector2(pos2-self.position).length()<=r2+self.radius
+    def isinvincible(self):
+        if self.invincible and time()-self.t>1:
+            self.invincible=False
+        return self.invincible
