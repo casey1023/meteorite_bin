@@ -6,7 +6,7 @@ def setting_menu(screen, call_state):
 
     screen.fill(BLACK)
     font = pygame.font.SysFont(font__, 50)
-    title = font.render("Meteorite Bin", True, WHITE)
+    title = font.render("Setting", True, WHITE)
     text_rect = title.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/6))
     screen.blit(title, text_rect)
 

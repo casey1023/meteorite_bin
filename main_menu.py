@@ -25,7 +25,6 @@ def main_menu(screen, call_state):
                 if start_button.isOver(pos):
                     return {'from': 'main_menu', 'to': 'play'}
                 elif setting_button.isOver(pos):
-                    print(123)
                     return {'from': 'main_menu', 'to': 'setting'}
                 elif quit_button.isOver(pos):
                     return {'from': "main_menu", 'to': 'quit'}

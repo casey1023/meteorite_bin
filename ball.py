@@ -38,7 +38,7 @@ class ball():
     def iscolide(self,pos2,r2):
         return Vector2(pos2-self.position).length()<=r2+self.radius
     def isinvincible(self):
-        if self.invincible and time()-self.t>1:
+        if self.invincible and time()-self.t>1.5:
             # print("set to not invincible")
             self.invincible=False
         return self.invincible
