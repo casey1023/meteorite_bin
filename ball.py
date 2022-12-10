@@ -17,11 +17,12 @@ class ball():
     def __str__(self):
         return "Position : "+str(self.position)+"\nV : "+str(self.v)
     def move(self,mp):
-        p=Vector2(self.position)
-        d=1/ (mp-p).length()**2 * (mp-p).normalize()*2000
+        p=self.position
+        # d=1/ (mp-p).length()**2 * (mp-p).normalize()*2000
+        d=(mp-self.position)*0.001
         self.v+=d
         #set speed limit
-        speedlimit=50
+        speedlimit=30
         if self.v.length()>speedlimit:
             self.v=self.v.normalize()*speedlimit
         self.position += self.v

@@ -61,6 +61,8 @@ def play(screen, call_state,level=0):
                     planets.remove(p)
 
         for p in planets:
+            if (p.position-mp).length()<= life+p.radius:
+                life=0
             p.draw()
             b=p.addball(mp)
             if b:
