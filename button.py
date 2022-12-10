@@ -3,6 +3,7 @@ from constant import *
 
 class button():
     def __init__(self, x,y,width,height,big=40 ,text='',norm_color=GREY, on_color=WHITE):
+        
         self.norm_color=norm_color
         self.on_color = on_color
         self.x = x
@@ -12,7 +13,7 @@ class button():
         self.text = text
         self.big=big
 
-    def draw(self,win,mouse_pos,outline=None):
+    def draw(self,screen,mouse_pos,outline=None):
         #Call this method to draw the button on the screen
         if self.text != '':
             font = pygame.font.SysFont(font__, self.big)
@@ -21,16 +22,16 @@ class button():
         if outline:
             rect_outline=pygame.Rect(self.x-2,self.y-2,self.width+4,self.height+4)
             rect.center=(self.x,self.y)
-            pygame.draw.rect(win, outline,rect_outline ,0)
+            pygame.draw.rect(screen, outline,rect_outline ,0)
         r=pygame.Rect(self.x,self.y,self.width,self.height)
         r.center=(self.x,self.y)
         if (self.isOver(mouse_pos)):
-            pygame.draw.rect(win, self.on_color, r,0)
+            pygame.draw.rect(screen, self.on_color, r,0)
         else:
-            pygame.draw.rect(win, self.norm_color, r,0)
+            pygame.draw.rect(screen, self.norm_color, r,0)
 
         
-        win.blit(text, text_rect)
+        screen.blit(text, text_rect)
 
     def isOver(self, pos):
         #Pos is the mouse position or a tuple of (x,y) coordinates

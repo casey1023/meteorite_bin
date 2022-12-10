@@ -22,7 +22,7 @@ class ball():
         d=(mp-self.position)*0.001
         self.v+=d
         #set speed limit
-        speedlimit=30
+        speedlimit=15
         if self.v.length()>speedlimit:
             self.v=self.v.normalize()*speedlimit
         self.position += self.v
