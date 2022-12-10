@@ -26,7 +26,6 @@ def play(screen, call_state,level=0,balls=[]):
     for i in lvlinit.keys():
         if i=="basic_planet":
             for j in lvlinit[i]:
-                print(j)
                 p=basic_planet(screen,*j)
                 planets.append(p)
     #start running
