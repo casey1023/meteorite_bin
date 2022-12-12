@@ -29,8 +29,8 @@ def setting_menu(screen, call_state):
     screen.blit(sound_word, sound_rect)
 
     back_button = button(SCREEN_WIDTH/2,SCREEN_HEIGHT/7*6,SCREEN_WIDTH/3,SCREEN_HEIGHT/8,text="Back", norm_color=WHITE, on_color=GREY)
-    music_slider = slider(SCREEN_WIDTH/7*2,SCREEN_WIDTH/7*5,SCREEN_HEIGHT/2.5,False)
-    sound_slider = slider(SCREEN_WIDTH/7*2,SCREEN_WIDTH/7*5,SCREEN_HEIGHT/2,False)
+    music_slider = slider(SCREEN_WIDTH/7*2,SCREEN_WIDTH/7*5,SCREEN_HEIGHT/2.5, initial = 0.6)
+    sound_slider = slider(SCREEN_WIDTH/7*2,SCREEN_WIDTH/7*5,SCREEN_HEIGHT/2, initial = 0.3)
 
     while True:
         for event in pygame.event.get():
@@ -50,6 +50,7 @@ def setting_menu(screen, call_state):
         screen.blit(sound_word, sound_rect)
         music_slider.draw(screen,mouse_pos,pygame.mouse.get_pressed()[0])
         sound_slider.draw(screen,mouse_pos,pygame.mouse.get_pressed()[0])
+        
         pygame.display.flip()
         fpsClock.tick(FPS)
 

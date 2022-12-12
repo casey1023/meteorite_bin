@@ -8,7 +8,7 @@ from setting_menu import *
 if __name__ == '__main__':
     screen = gameinit()
     stack = [{'to': 'main_menu'}]
-
+    
     while len(stack) > 0:
         current_state = stack[0]
         del stack[0]

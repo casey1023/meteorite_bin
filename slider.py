@@ -2,15 +2,14 @@ import pygame
 from constant import *
 
 class slider():
-    def __init__(self,low_limit,high_limit,y,press,radius = 10, initial = 0,
-     activate = False, norm_color= WHITE, on_color= GREEN,linecolor = BLACK):
+    def __init__(self,low_limit,high_limit,y,radius = 15, initial = 0,
+     norm_color= WHITE, on_color= GREEN,linecolor = BLACK):
         self.low_limit = low_limit
         self.high_limit = high_limit
         self.y = y
         self.r = radius
-        self.initial = low_limit
-        self.press = press
-        self.activate = activate
+        self.initial = low_limit + (high_limit - low_limit)*initial
+        self.activate = False
         self.norm_color = norm_color
         self.on_color = on_color
         self.position = (self.initial,self.y)
