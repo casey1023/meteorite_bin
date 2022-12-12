@@ -47,6 +47,7 @@ def play(screen, call_state,level=0,balls=[]):
         if life!=0:
             pygame.draw.circle(screen,WHITE,mp,life+5,0)
         else:
+            balls=[]
             return {'from': 'play', 'to': 'end_menu'}
 
         for i in balls:

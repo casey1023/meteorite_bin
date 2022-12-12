@@ -19,10 +19,10 @@ class ball():
     def move(self,mp):
         p=self.position
         # d=1/ (mp-p).length()**2 * (mp-p).normalize()*2000
-        d=(mp-self.position)*0.001
+        d=(mp-self.position)*0.002
         self.v+=d
         #set speed limit
-        speedlimit=15
+        speedlimit=12
         if self.v.length()>speedlimit:
             self.v=self.v.normalize()*speedlimit
         self.position += self.v

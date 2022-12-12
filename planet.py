@@ -31,6 +31,6 @@ class basic_planet():
         if time()-self.t>=self.shootinterval+self.offset:
         	self.t=time()
         	self.offset=0
-        	return ball(self.screen,self.position+(mp-self.position).normalize()*self.radius*1.5,(mp-self.position).normalize()*10)
+        	return ball(self.screen,self.position+(mp-self.position).normalize()*self.radius*1.5,(mp-self.position).normalize()*7)
         else:
         	return 0
