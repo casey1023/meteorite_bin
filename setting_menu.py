@@ -68,8 +68,8 @@ def setting_menu(screen, call_state):
                 position = (left_limit,y)
             elif(mouse_pos[0] > right_limit):
                 position = (right_limit,y)
-
             music_slide = pygame.draw.circle(screen,on_color, position, r, 0)
+
         if not clicked:
             music_slide = pygame.draw.circle(screen,norm_color, position, r, 0)
         pygame.display.flip()
