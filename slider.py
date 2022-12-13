@@ -19,7 +19,8 @@ class slider():
 
     def draw(self,screen,mouse_pos,pres):
         over = self.Over(mouse_pos)
-        if pres and over and not slider.working:
+        online = self.on_line(mouse_pos)
+        if pres and ( over or online )and not slider.working:
             self.activate = True
             slider.working = True
         if not pres:
@@ -34,6 +35,11 @@ class slider():
 
     def Over(self, m_pos):
         if((self.position[0]-m_pos[0])**2+(self.position[1]-m_pos[1])**2) < self.r**2:
+            return True
+        return False
+    
+    def on_line(self, m_pos):
+        if(self.low_limit < m_pos[0] < self.high_limit and self.y - 1/2*self.r < m_pos[1] < self.y + 1/2*self.r):
             return True
         return False
 
