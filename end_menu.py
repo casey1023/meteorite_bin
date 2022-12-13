@@ -9,7 +9,10 @@ def end_menu(screen, caller_state):
 
     screen.fill(BLACK)
     font = pygame.font.SysFont(font__, 50)
-    title = font.render("You Die", True, WHITE)
+    if 'end_menu_title' in caller_state:
+        title = font.render(caller_state['end_menu_title'], True, WHITE)
+    else:
+        title = font.render("You Die", True, WHITE)
     text_rect = title.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/6))
 
     screen.blit(title, text_rect)

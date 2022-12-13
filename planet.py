@@ -29,8 +29,8 @@ class basic_planet():
         self.screen.blit(text, text_rect)
     def addball(self,mp):
         if time()-self.t>=self.shootinterval+self.offset:
-        	self.t=time()
-        	self.offset=0
-        	return ball(self.screen,self.position+(mp-self.position).normalize()*self.radius*1.5,(mp-self.position).normalize()*7)
+            self.t=time()
+            self.offset=0
+            return ball(self.screen,self.position+(mp-self.position).normalize()*self.radius*1.5,(mp-self.position).normalize()*7)
         else:
         	return 0
