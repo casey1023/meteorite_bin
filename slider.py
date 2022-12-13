@@ -2,6 +2,8 @@ import pygame
 from constant import *
 
 class slider():
+    working = False
+
     def __init__(self,low_limit,high_limit,y,radius = 15, initial = 0,
      norm_color= WHITE, on_color= GREEN,linecolor = BLACK):
         self.low_limit = low_limit
@@ -17,10 +19,12 @@ class slider():
 
     def draw(self,screen,mouse_pos,pres):
         over = self.Over(mouse_pos)
-        if pres and over:
+        if pres and over and not slider.working:
             self.activate = True
+            slider.working = True
         if not pres:
             self.activate = False
+            slider.working = False
         pygame.draw.line(screen, self.line_color,(self.low_limit,self.y),(self.high_limit,self.y),width = 5)
         if self.activate:
             self.newpos(mouse_pos[0])
