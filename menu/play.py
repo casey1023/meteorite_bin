@@ -5,7 +5,7 @@ from gameinit import *
 from ..constant import *
 from end_menu import *
 from ..obj.ball import *
-from ..obj.planet import *
+from planet import *
 from pause_menu import *
 
 level_init=[]

@@ -1,5 +1,2 @@
-import obj.ball
-import obj.button
-import obj.planet
-import obj.slider
-
+from obj import button
+from obj import ball
