@@ -1,9 +1,9 @@
 import pygame
 from gameinit import *
 from constant import *
-from button import *
-from constant import *
-from slider import *
+from ..obj.button import *
+from ..constant import *
+from ..obj.slider import *
 
 pic_setting = pygame.image.load("setting.jpg")
 pic_setting_new = pygame.transform.scale(pic_setting,(SCREEN_WIDTH,SCREEN_HEIGHT))

@@ -1,5 +1,5 @@
 import pygame
-import constant
+import ..constant
 from time import time
 from ball import *
 from math import sin,cos,radians
