@@ -3,7 +3,10 @@ import pygame
 
 from button import *
 from play import * 
-from constant import *
+from setting import *
+
+constant=readconstant()
+locals().update(constant)
 
 
 def gameinit():

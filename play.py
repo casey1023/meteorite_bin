@@ -2,15 +2,17 @@ import pygame
 import random
 from pygame.math import Vector2
 from gameinit import *
-from constant import *
-from end_menu import *
 from ball import *
 from planet import *
-from pause_menu import *
+from setting import *
+
+constant=readconstant()
+locals().update(constant)
 
 level_init=[]
 level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),2]]})
 level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),1],[(SCREEN_WIDTH/4,SCREEN_HEIGHT*3/4),2],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT/4),3]]})
+
 
 def randinscreen():
     return (random.randint(0,SCREEN_WIDTH),random.randint(0,SCREEN_HEIGHT))

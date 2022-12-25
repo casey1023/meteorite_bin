@@ -1,7 +1,10 @@
 import pygame
-from constant import *
 from pygame.math import Vector2
 from time import time
+from setting import *
+
+constant=readconstant()
+locals().update(constant)
 
 class ball():
     def __init__(self,screen, position,init_v=0, radius=5):

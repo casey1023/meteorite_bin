@@ -1,8 +1,10 @@
 import pygame
-
 from gameinit import *
-from constant import *
 from play import *
+from setting import *
+
+constant=readconstant()
+locals().update(constant)
 
 def main_menu(screen, call_state):
     fpsClock = pygame.time.Clock()
