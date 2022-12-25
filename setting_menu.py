@@ -7,7 +7,7 @@ from setting import *
 constant=readconstant()
 locals().update(constant)
 
-pic_setting = pygame.image.load("setting.jpg")
+pic_setting = pygame.image.load("res/setting.jpg")
 pic_setting_new = pygame.transform.scale(pic_setting,(SCREEN_WIDTH,SCREEN_HEIGHT))
 
 def setting_menu(screen, call_state):
@@ -37,7 +37,7 @@ def setting_menu(screen, call_state):
     sound_slider = slider(SCREEN_WIDTH/7*2,SCREEN_WIDTH/7*5,SCREEN_HEIGHT/2, initial = 0.3)
     
 
-    pygame.mixer.music.load('Winterglade.mp3') 
+    pygame.mixer.music.load('res/Winterglade.mp3') 
     pygame.mixer.music.play()
     pygame.mixer.music.set_volume(0.7)
 
