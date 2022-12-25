@@ -22,7 +22,7 @@ if __name__ == '__main__':
         elif current_state['to'] == 'play':
             return_state = play(screen, current_state)
         
-        elif current_state['to'] == 'setting':
+        elif current_state['to'] == 'setting_menu':
             return_state = setting_menu(screen, current_state)
         
         elif current_state['to'] == 'end_menu':

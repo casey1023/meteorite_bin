@@ -4,10 +4,10 @@ from button import *
 from play import *
 from setting import *
 
-constant=readconstant()
-locals().update(constant)
-
 def end_menu(screen, caller_state):
+    constant=readconstant()
+    locals().update(constant)
+
     fpsClock = pygame.time.Clock()
 
     screen.fill(BLACK)
@@ -33,7 +33,7 @@ def end_menu(screen, caller_state):
                 if start_button.isOver(pos):
                     return {'from': 'end_menu', 'to': 'play'}
                 elif setting_button.isOver(pos):
-                    return {'from': 'end_menu', 'to': 'setting'}
+                    return {'from': 'end_menu', 'to': 'setting_menu'}
                 elif quit_button.isOver(pos):
                     return {'from': 'end_menu', 'to': 'quit'}
         

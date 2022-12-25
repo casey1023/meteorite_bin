@@ -3,10 +3,10 @@ from gameinit import *
 from play import *
 from setting import *
 
-constant=readconstant()
-locals().update(constant)
-
 def main_menu(screen, call_state):
+    constant=readconstant()
+    locals().update(constant)
+
     fpsClock = pygame.time.Clock()
     
     screen.fill(BLACK)
@@ -27,7 +27,7 @@ def main_menu(screen, call_state):
                 if start_button.isOver(pos):
                     return {'from': 'main_menu', 'to': 'play'}
                 elif setting_button.isOver(pos):
-                    return {'from': 'main_menu', 'to': 'setting'}
+                    return {'from': 'main_menu', 'to': 'setting_menu'}
                 elif quit_button.isOver(pos):
                     return {'from': "main_menu", 'to': 'quit'}
         

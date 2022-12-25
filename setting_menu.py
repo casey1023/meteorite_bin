@@ -4,14 +4,12 @@ from button import *
 from slider import *
 from setting import *
 
-constant=readconstant()
-locals().update(constant)
-
 pic_setting = pygame.image.load("res/setting.jpg")
 pic_setting_new = pygame.transform.scale(pic_setting,(SCREEN_WIDTH,SCREEN_HEIGHT))
 
 def setting_menu(screen, call_state):
-
+    constant=readconstant()
+    locals().update(constant)
 
     fpsClock = pygame.time.Clock()
 

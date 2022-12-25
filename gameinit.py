@@ -5,11 +5,10 @@ from button import *
 from play import * 
 from setting import *
 
-constant=readconstant()
-locals().update(constant)
-
-
 def gameinit():
+    constant=readconstant()
+    locals().update(constant)
+
     pygame.init()
     pygame.font.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
