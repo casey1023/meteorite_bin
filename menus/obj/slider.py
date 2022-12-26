@@ -1,5 +1,8 @@
 import pygame
-from ..constant import *
+from setting import *
+
+constant=readconstant()
+locals().update(constant)
 
 class slider():
     working = False

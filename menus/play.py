@@ -2,23 +2,30 @@ import pygame
 import random
 from pygame.math import Vector2
 from gameinit import *
-from ..constant import *
-from end_menu import *
-from ..obj.ball import *
-from planet import *
-from pause_menu import *
+# from ball import *
+# from planet import *
+# from setting import *
+from obj.setting import *
+from obj.ball import *
+from obj.planet import *
+
+
+constant=readconstant()
+locals().update(constant)
 
 level_init=[]
 level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),2]]})
 level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),1],[(SCREEN_WIDTH/4,SCREEN_HEIGHT*3/4),2],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT/4),3]]})
 
+
 def randinscreen():
     return (random.randint(0,SCREEN_WIDTH),random.randint(0,SCREEN_HEIGHT))
 
-def play(screen, call_state,level=0,balls=[]):
+def play(screen, call_state,level=0,balls=[],planets=[],life=5):
+    constant=readconstant()
+    locals().update(constant)
     fpsClock = pygame.time.Clock()
-    planets=[]
-    life=5
+
     running = True
     my_font = pygame.font.SysFont(font__, 30)
     #create planet
@@ -37,7 +44,7 @@ def play(screen, call_state,level=0,balls=[]):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     #important stop
-                    return 0
+                    return {'from': 'play', 'to': 'pause'},balls,palnets,life
                 elif event.key == pygame.K_RIGHT:
                     b=ball(screen,randinscreen())
                     balls.append(b)

@@ -1,14 +1,16 @@
 from gameinit import *
-from constant import *
 from play import *
 from main_menu import *
 from end_menu import *
 from setting_menu import *
+from setting import *
 
 if __name__ == '__main__':
     screen = gameinit()
     stack = [{'to': 'main_menu'}]
-    
+    constant=readconstant()
+    locals().update(constant)
+
     while len(stack) > 0:
         current_state = stack[0]
         del stack[0]
@@ -20,7 +22,7 @@ if __name__ == '__main__':
         elif current_state['to'] == 'play':
             return_state = play(screen, current_state)
         
-        elif current_state['to'] == 'setting':
+        elif current_state['to'] == 'setting_menu':
             return_state = setting_menu(screen, current_state)
         
         elif current_state['to'] == 'end_menu':

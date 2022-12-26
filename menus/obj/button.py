@@ -1,5 +1,8 @@
 import pygame
-from ..constant import *
+from setting import *
+
+constant=readconstant()
+locals().update(constant)
 
 class button():
     def __init__(self, x,y,width,height,big=40 ,text='',norm_color=GREY, on_color=WHITE):

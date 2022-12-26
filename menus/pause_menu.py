@@ -1,10 +1,13 @@
-from ..obj.button import *
-from ..constant import *
+from button import *
+from setting import *
 
 
 #### DNF
 
 def pause_menu(screen, call_state):
+    constant=readconstant()
+    locals().update(constant)
+    
     fpsClock = pygame.time.Clock()
 
     screen.fill(BLACK)
