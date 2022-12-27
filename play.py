@@ -47,7 +47,7 @@ level_init.append({"basic_planet":[[(SCREEN_WIDTH*10/30,SCREEN_HEIGHT*10/30),1,2
 # level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),2]]})
 # level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),1],[(SCREEN_WIDTH/4,SCREEN_HEIGHT*3/4),2],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT/4),3]]})
 
-
+title=["idk" for i in range(10)]
 
 def randinscreen():
     return (random.randint(0,SCREEN_WIDTH),random.randint(0,SCREEN_HEIGHT))
@@ -59,15 +59,24 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
     t=time()
     running = True
     my_font = pygame.font.SysFont(font__, 30)
-    #create planet
+   
     if level > len(level_init) - 1:
         return {'from': 'play', 'to': 'end_menu', 'end_menu_title': 'The End'}
     else:
         lvlinit=level_init[level]
+     #create planet
     for i in lvlinit.keys():
         if i=="basic_planet":
             for j in lvlinit[i]:
                 p=basic_planet(screen,*j)
+                planets.append(p)
+        elif i=="triple_shoot_planet":
+            for j in lvlinit[i]:
+                p=triple_shoot_planet(screen,*j)
+                planets.append(p)
+        elif i=="explode_planet":
+            for j in lvlinit[i]:
+                p=explode_planet(screen,*j)
                 planets.append(p)
     #start running
     while running and len(planets):
@@ -114,6 +123,8 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
                             balls.remove(i)
                     if p.life==0:
                         planets.remove(p)
+                        if isinstance(p,explode_planet):#handle explode planet
+                            balls.extend(p.explode())
 
         for p in planets:
             if (p.position-mp).length()<= life+p.radius and t+1<time():
@@ -127,6 +138,9 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
         screen.blit(lifetext, (5,5))
         lvltext = my_font.render('LVL : '+str(level), False, (0,0,255))
         screen.blit(lvltext, (SCREEN_WIDTH-100,5))
+        titletext = my_font.render(title[level], False, (0,0,255))
+        text_rect = titletext.get_rect(center=(SCREEN_WIDTH/2,10))
+        screen.blit(titletext, text_rect)
         pygame.display.flip()
         fpsClock.tick(FPS)
 
