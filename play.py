@@ -121,7 +121,7 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
             p.draw()
             b=p.addball(mp)
             if b:
-                balls.append(b)
+                balls.extend(b)
 
         lifetext = my_font.render('Life : '+str(life), False, (0,0,255))
         screen.blit(lifetext, (5,5))
