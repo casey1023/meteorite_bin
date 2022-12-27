@@ -82,8 +82,7 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
                 elif event.key == pygame.K_DOWN:#cheat
                     planets.clear()
                     balls.clear()
-                    play(screen,call_state,level+1)
-                    return 
+                    return play(screen,call_state,level+1)
             elif event.type == pygame.QUIT:
                 running = False
                 return {'from': 'play', 'to': 'quit'}
@@ -131,8 +130,7 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
         pygame.display.flip()
         fpsClock.tick(FPS)
 
-    play(screen,call_state,level+1,balls)
-    return "succeed ? ---dnf"
+    return play(screen,call_state,level+1,balls)
 
 if __name__=="__main__":
 
