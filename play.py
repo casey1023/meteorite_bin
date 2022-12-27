@@ -13,7 +13,7 @@ locals().update(constant)
 level_init=[]
 
 #lv1
-level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),2]]})
+level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4),0,1,20,3],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),1.5,1,20,3]]})
 #lv2
 level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),1],[(SCREEN_WIDTH/4,SCREEN_HEIGHT*3/4),2],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT/4),3]]})
 #lv3

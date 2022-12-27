@@ -22,7 +22,7 @@ class ball():
     def move(self,mp):
         p=self.position
         # d=1/ (mp-p).length()**2 * (mp-p).normalize()*2000
-        d=(mp-self.position)*0.002
+        d=(mp-self.position)*0.0015
         self.v+=d
         #set speed limit
         speedlimit=12
@@ -32,8 +32,10 @@ class ball():
         #check if hit boarder
         if self.position.x<0 or self.position.x>SCREEN_WIDTH:
             self.v.x=-self.v.x
+            self.v=self.v*0.9
         if self.position.y<0 or self.position.y>SCREEN_HEIGHT:
             self.v.y=-self.v.y
+            self.v=self.v*0.9
         if self.invincible:
             pygame.draw.circle(self.screen,INVRED,self.position,self.radius,0)
         else:
