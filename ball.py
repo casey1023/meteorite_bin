@@ -32,10 +32,10 @@ class ball():
         #check if hit boarder
         if self.position.x<0 or self.position.x>SCREEN_WIDTH:
             self.v.x=-self.v.x
-            self.v=self.v*0.9
+            self.v=self.v*0.95
         if self.position.y<0 or self.position.y>SCREEN_HEIGHT:
             self.v.y=-self.v.y
-            self.v=self.v*0.9
+            self.v=self.v*0.95
         if self.invincible:
             pygame.draw.circle(self.screen,INVRED,self.position,self.radius,0)
         else:
