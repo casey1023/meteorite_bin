@@ -5,6 +5,7 @@ from gameinit import *
 from ball import *
 from planet import *
 from setting import *
+from time import time
 
 constant=readconstant()
 locals().update(constant)
@@ -41,10 +42,10 @@ level_init.append({"basic_planet":[[(SCREEN_WIDTH*10/30,SCREEN_HEIGHT*10/30),1,2
 #lv12
 #lv13
 #lv14
-#lvmax
+# #lvmax
 
-level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),2]]})
-level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),1],[(SCREEN_WIDTH/4,SCREEN_HEIGHT*3/4),2],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT/4),3]]})
+# level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),2]]})
+# level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),1],[(SCREEN_WIDTH/4,SCREEN_HEIGHT*3/4),2],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT/4),3]]})
 
 
 
@@ -55,7 +56,7 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
     constant=readconstant()
     locals().update(constant)
     fpsClock = pygame.time.Clock()
-
+    t=time()
     running = True
     my_font = pygame.font.SysFont(font__, 30)
     #create planet
@@ -88,6 +89,7 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
             pygame.draw.circle(screen,WHITE,mp,life+5,0)
         else:
             balls.clear()
+            planets.clear()
             return {'from': 'play', 'to': 'end_menu'}
 
         for i in balls:
@@ -98,17 +100,19 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
             if i.isinvincible()==False:
                 for j in balls:
                     if i!=j and i.iscolide(j.position,j.radius):
-                        balls.remove(i)
+                        if i in balls:
+                            balls.remove(i)
                         balls.remove(j)
                 for p in planets:
                     if  i.iscolide(p.position,p.radius):
                         p.life-=1
-                        balls.remove(i)
+                        if i in balls:
+                            balls.remove(i)
                     if p.life==0:
                         planets.remove(p)
 
         for p in planets:
-            if (p.position-mp).length()<= life+p.radius:
+            if (p.position-mp).length()<= life+p.radius and t+1<time():
                 life=0
             p.draw()
             b=p.addball(mp)
