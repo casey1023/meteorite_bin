@@ -6,7 +6,11 @@
         0,
         0
     ],
-    "INVRED":[255,161,161],
+    "INVRED": [
+        255,
+        161,
+        161
+    ],
     "GREEN": [
         0,
         255,
@@ -17,7 +21,11 @@
         0,
         255
     ],
-    "INVBLUE":[0,0,191],
+    "INVBLUE": [
+        0,
+        0,
+        191
+    ],
     "BLACK": [
         0,
         0,
@@ -35,5 +43,6 @@
     ],
     "font__": "Comic Sans MS",
     "FPS": 60,
-    "volumn": 100
+    "bgm_volume": 0.8,
+    "sound_volume": 0.8
 }

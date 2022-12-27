@@ -61,3 +61,6 @@ class slider():
             self.position = (self.low_limit , self.y)
         elif(mouse_x >= self.high_limit):
             self.position = (self.high_limit, self.y)
+    
+    def value(self):
+        return (self.position[0]-self.low_limit)/(self.high_limit-self.low_limit)

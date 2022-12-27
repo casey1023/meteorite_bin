@@ -4,9 +4,9 @@ from play import *
 from setting import *
 
 def main_menu(screen, call_state):
-    constant=readconstant()
-    locals().update(constant)
-
+    # constant=readconstant()
+    # locals().update(constant)
+    # print(f'mainmenu read {bgm_volume}')
     fpsClock = pygame.time.Clock()
     
     screen.fill(BLACK)

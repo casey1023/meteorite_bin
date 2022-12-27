@@ -11,6 +11,10 @@ if __name__ == '__main__':
     constant=readconstant()
     locals().update(constant)
 
+    pygame.mixer.music.load('res/Winterglade.mp3') 
+    pygame.mixer.music.play()
+    pygame.mixer.music.set_volume(bgm_volume)
+    
     while len(stack) > 0:
         current_state = stack[0]
         del stack[0]
@@ -18,13 +22,17 @@ if __name__ == '__main__':
 
         if current_state['to'] == 'main_menu':
             return_state = main_menu(screen, current_state)
-        
+            # constant=readconstant()
+            # locals().update(constant)
+            # print(f'main  read {bgm_volume}')
         elif current_state['to'] == 'play':
             return_state = play(screen, current_state)
         
         elif current_state['to'] == 'setting_menu':
-            return_state = setting_menu(screen, current_state)
-        
+            return_state,constant = setting_menu(screen, current_state,constant)
+            # constant=readconstant()
+            # locals().update(constant)
+            # print(f'main  read {bgm_volume}')
         elif current_state['to'] == 'end_menu':
             return_state = end_menu(screen, current_state)
         

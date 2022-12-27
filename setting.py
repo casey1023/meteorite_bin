@@ -15,7 +15,7 @@ def writeconstant(constant):
 if __name__=="__main__":
 	constant=readconstant()
 	print(constant)
-	constant["FPS"]=30
+	constant["FPS"]=60
 	print(constant)
 	writeconstant(constant)
 	print(readconstant())
