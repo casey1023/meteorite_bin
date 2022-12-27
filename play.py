@@ -9,7 +9,8 @@ from time import time
 
 constant=readconstant()
 locals().update(constant)
-
+pygame.mixer.init()
+pop_sound = pygame.mixer.Sound('res/p.wav')
 level_init=[]
 
 #lv1
@@ -100,6 +101,7 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
             i.move(mp)
             if i.iscolide(mp,life+5):
                 life-=1
+                pop_sound.play()
                 balls.remove(i)
             if i.isinvincible()==False:
                 for j in balls:

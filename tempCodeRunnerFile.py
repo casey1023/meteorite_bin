@@ -1,0 +1,1 @@
+pop_sound = pygame.mixer.Sound('res/pop.wav')
