@@ -1,15 +1,21 @@
 import pygame
-from constant import *
 from button import *
 from button import *
 from play import *
+from setting import *
 
 def end_menu(screen, caller_state):
+    constant=readconstant()
+    locals().update(constant)
+
     fpsClock = pygame.time.Clock()
 
     screen.fill(BLACK)
     font = pygame.font.SysFont(font__, 50)
-    title = font.render("You Die", True, WHITE)
+    if 'end_menu_title' in caller_state:
+        title = font.render(caller_state['end_menu_title'], True, WHITE)
+    else:
+        title = font.render("You Die", True, WHITE)
     text_rect = title.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/6))
 
     screen.blit(title, text_rect)
@@ -27,7 +33,7 @@ def end_menu(screen, caller_state):
                 if start_button.isOver(pos):
                     return {'from': 'end_menu', 'to': 'play'}
                 elif setting_button.isOver(pos):
-                    return {'from': 'end_menu', 'to': 'setting'}
+                    return {'from': 'end_menu', 'to': 'setting_menu'}
                 elif quit_button.isOver(pos):
                     return {'from': 'end_menu', 'to': 'quit'}
         

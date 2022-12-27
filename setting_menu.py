@@ -1,14 +1,16 @@
 import pygame
 from gameinit import *
-from constant import *
 from button import *
-from constant import *
 from slider import *
+from setting import *
 
-pic_setting = pygame.image.load("setting.jpg")
+pic_setting = pygame.image.load("res/setting.jpg")
 pic_setting_new = pygame.transform.scale(pic_setting,(SCREEN_WIDTH,SCREEN_HEIGHT))
 
 def setting_menu(screen, call_state):
+    constant=readconstant()
+    locals().update(constant)
+
     fpsClock = pygame.time.Clock()
 
     screen.fill(BLACK)
@@ -31,6 +33,11 @@ def setting_menu(screen, call_state):
     back_button = button(SCREEN_WIDTH/2,SCREEN_HEIGHT/7*6,SCREEN_WIDTH/3,SCREEN_HEIGHT/8,text="Back", norm_color=WHITE, on_color=GREY)
     music_slider = slider(SCREEN_WIDTH/7*2,SCREEN_WIDTH/7*5,SCREEN_HEIGHT/2.5, initial = 0.6)
     sound_slider = slider(SCREEN_WIDTH/7*2,SCREEN_WIDTH/7*5,SCREEN_HEIGHT/2, initial = 0.3)
+    
+
+    pygame.mixer.music.load('res/Winterglade.mp3') 
+    pygame.mixer.music.play()
+    pygame.mixer.music.set_volume(0.7)
 
     while True:
         for event in pygame.event.get():
