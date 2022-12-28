@@ -41,7 +41,7 @@ if __name__ == '__main__':
         elif current_state['to'] == 'play':
             return_state,level,balls,planets,life = play(screen, current_state,level,balls,planets,life)
 
-        elif current_state['to'] == 'pause':
+        elif current_state['to'] == 'pause_menu':
             return_state = pause_menu(screen, current_state)
         
         elif current_state['to'] == 'setting_menu':
