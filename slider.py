@@ -1,14 +1,19 @@
 import pygame
 from setting import *
 
+#get const
 constant = readconstant()
 locals().update(constant)
+
+#init music
+pygame.mixer.init()
+pop_sound = pygame.mixer.Sound('res/pop.wav')
 
 class slider():
     working = False
 
     def __init__(self, low_limit, high_limit, y, radius = 15, initial = 0, \
-     norm_color = WHITE, on_color = GREEN, linecolor = BLACK):
+     norm_color = WHITE, on_color = GREEN, linecolor = BLACK, pop_sound = False):
         self.low_limit = low_limit
         self.high_limit = high_limit
         self.y = y
@@ -19,6 +24,7 @@ class slider():
         self.on_color = on_color
         self.position = (self.initial, self.y)
         self.line_color = linecolor
+        self.pop_sound = pop_sound
 
     def draw(self, screen, mouse_pos, pres):
         over = self.Over(mouse_pos)
@@ -29,6 +35,9 @@ class slider():
             slider.working = True
         
         if not pres:
+            if self.pop_sound == True and self.activate  == True:
+                pop_sound.play()
+                print(self.pop_sound, self.activate, slider.working)
             self.activate = False
             slider.working = False
         
