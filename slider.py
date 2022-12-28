@@ -37,7 +37,6 @@ class slider():
         if not pres:
             if self.pop_sound == True and self.activate  == True:
                 pop_sound.play()
-                print(self.pop_sound, self.activate, slider.working)
             self.activate = False
             slider.working = False
         
