@@ -74,6 +74,7 @@ if __name__ == '__main__':
             click_sound.set_volume(constant["sound_volume"])
             click_sound.play()
 
+        #end_menu
         elif current_state['to'] == 'end_menu':
             #renew game state
             balls = []
