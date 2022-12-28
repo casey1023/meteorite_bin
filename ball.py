@@ -37,7 +37,7 @@ class ball():
             self.v.y=-self.v.y
             self.v=self.v*0.95
         if self.invincible:
-            pygame.draw.circle(self.screen,INVRED,self.position,self.radius,0)
+            pygame.draw.circle(self.screen,LIGHTRED,self.position,self.radius,0)
         else:
             pygame.draw.circle(self.screen,RED,self.position,self.radius,0)
     def iscolide(self,pos2,r2):
