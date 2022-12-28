@@ -62,7 +62,7 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
     my_font = pygame.font.SysFont(font__, 30)
    
     if level > len(level_init) - 1:
-        return {'from': 'play', 'to': 'end_menu', 'end_menu_title': 'The End'}
+        return {'from': 'play', 'to': 'end_menu', 'end_menu_title': 'The End'},0,[],[],5
     else:
         lvlinit=level_init[level]
      #create planet
@@ -85,7 +85,7 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     #important stop
-                    return {'from': 'play', 'to': 'pause'},balls,palnets,life
+                    return {'from': 'play', 'to': 'pause'},level,balls,palnets,life
                 elif event.key == pygame.K_RIGHT:
                     b=ball(screen,randinscreen())
                     balls.append(b)
@@ -95,7 +95,7 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
                     return play(screen,call_state,level+1)
             elif event.type == pygame.QUIT:
                 running = False
-                return {'from': 'play', 'to': 'quit'}
+                return {'from': 'play', 'to': 'quit'},0,[],[],5
 
         screen.fill(BLACK)
         mp=Vector2(pygame.mouse.get_pos())
@@ -104,7 +104,7 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
         else:
             balls.clear()
             planets.clear()
-            return {'from': 'play', 'to': 'end_menu'}
+            return {'from': 'play', 'to': 'end_menu'},0,[],[],5
 
         for i in balls:
             i.move(mp)

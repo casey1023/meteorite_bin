@@ -20,6 +20,10 @@ if __name__ == '__main__':
         current_state = stack[0]
         del stack[0]
         return_state = 0
+        balls=[]
+        planets=[]
+        life=5
+        level=0
 
         if current_state['to'] == 'main_menu':
             return_state = main_menu(screen, current_state)
@@ -27,7 +31,10 @@ if __name__ == '__main__':
             click_sound.play()
 
         elif current_state['to'] == 'play':
-            return_state = play(screen, current_state)
+            return_state,level,balls,planets,life = play(screen, current_state,level,balls,planets,life)
+
+        elif current_state['to'] == 'pause':
+            return_state = pause_menu(screen, current_state)
         
         elif current_state['to'] == 'setting_menu':
             return_state,constant = setting_menu(screen, current_state,constant)
