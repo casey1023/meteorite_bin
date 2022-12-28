@@ -13,6 +13,9 @@ pygame.mixer.init()
 pop_sound = pygame.mixer.Sound('res/p.wav')
 level_init=[]
 
+
+title=["idk" for i in range(10)]
+title[0]="Basic"
 #lv1
 level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4),0,1,20,3],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),1.5,1,20,3]]})
 #lv2
@@ -48,7 +51,7 @@ level_init.append({"basic_planet":[[(SCREEN_WIDTH*10/30,SCREEN_HEIGHT*10/30),1,2
 # level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),2]]})
 # level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),1],[(SCREEN_WIDTH/4,SCREEN_HEIGHT*3/4),2],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT/4),3]]})
 
-title=["idk" for i in range(10)]
+
 
 def randinscreen():
     return (random.randint(0,SCREEN_WIDTH),random.randint(0,SCREEN_HEIGHT))
@@ -58,7 +61,6 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
     locals().update(constant)
     fpsClock = pygame.time.Clock()
     t=time()
-    running = True
     my_font = pygame.font.SysFont(font__, 30)
    
     if level > len(level_init) - 1:
@@ -66,21 +68,22 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
     else:
         lvlinit=level_init[level]
      #create planet
-    for i in lvlinit.keys():
-        if i=="basic_planet":
-            for j in lvlinit[i]:
-                p=basic_planet(screen,*j)
-                planets.append(p)
-        elif i=="triple_shoot_planet":
-            for j in lvlinit[i]:
-                p=triple_shoot_planet(screen,*j)
-                planets.append(p)
-        elif i=="explode_planet":
-            for j in lvlinit[i]:
-                p=explode_planet(screen,*j)
-                planets.append(p)
+    if len(planets)==0:
+        for i in lvlinit.keys():
+            if i=="basic_planet":
+                for j in lvlinit[i]:
+                    p=basic_planet(screen,*j)
+                    planets.append(p)
+            elif i=="triple_shoot_planet":
+                for j in lvlinit[i]:
+                    p=triple_shoot_planet(screen,*j)
+                    planets.append(p)
+            elif i=="explode_planet":
+                for j in lvlinit[i]:
+                    p=explode_planet(screen,*j)
+                    planets.append(p)
     #start running
-    while running and len(planets):
+    while len(planets):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
@@ -94,7 +97,6 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
                     balls.clear()
                     return play(screen,call_state,level+1)
             elif event.type == pygame.QUIT:
-                running = False
                 return {'from': 'play', 'to': 'quit'},0,[],[],5
 
         screen.fill(BLACK)
@@ -136,12 +138,12 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
             if b:
                 balls.extend(b)
 
-        lifetext = my_font.render('Life : '+str(life), False, (0,0,255))
-        screen.blit(lifetext, (5,5))
-        lvltext = my_font.render('LVL : '+str(level), False, (0,0,255))
-        screen.blit(lvltext, (SCREEN_WIDTH-100,5))
-        titletext = my_font.render(title[level], False, (0,0,255))
-        text_rect = titletext.get_rect(center=(SCREEN_WIDTH/2,10))
+        lifetext = my_font.render('Life : '+str(life), False, WHITE)
+        screen.blit(lifetext, (5,3))
+        lvltext = my_font.render('LVL : '+str(level), False, WHITE)
+        screen.blit(lvltext, (SCREEN_WIDTH-100,3))
+        titletext = my_font.render(title[level], False, WHITE)
+        text_rect = titletext.get_rect(center=(SCREEN_WIDTH/2,20))
         screen.blit(titletext, text_rect)
         pygame.display.flip()
         fpsClock.tick(FPS)
@@ -151,5 +153,5 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
 if __name__=="__main__":
 
     screen=gameinit()
-    play(screen,{'to': 'main_menu'})
+    print(play(screen,{'to': 'main_menu'}))
     pygame.quit()

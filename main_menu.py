@@ -43,5 +43,5 @@ def main_menu(screen, call_state):
 if __name__=="__main__":
 
     screen=gameinit()
-    main_menu(screen)
+    main_menu(screen,{'to': 'main_menu'})
     pygame.quit()
