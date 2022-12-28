@@ -23,9 +23,12 @@ def pause_menu(screen, call_state):
     
     while True:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    return {'from': 'pause_menu', 'to': 'play'}
+            elif event.type == pygame.QUIT:
                 return {'from': "pause_menu", 'to': 'quit'}
-            if event.type == pygame.MOUSEBUTTONUP:
+            elif event.type == pygame.MOUSEBUTTONUP:
                 pos = pygame.mouse.get_pos()
                 if back_button.isOver(pos):
                     return {'from': 'pause_menu', 'to': 'play'}

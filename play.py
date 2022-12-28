@@ -48,9 +48,7 @@ level_init.append({"basic_planet":[[(SCREEN_WIDTH*10/30,SCREEN_HEIGHT*10/30),1,2
 #lv14
 # #lvmax
 
-# level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),2]]})
-# level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),1],[(SCREEN_WIDTH/4,SCREEN_HEIGHT*3/4),2],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT/4),3]]})
-
+invt=5
 
 
 def randinscreen():
@@ -62,12 +60,18 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
     fpsClock = pygame.time.Clock()
     t=time()
     my_font = pygame.font.SysFont(font__, 30)
+
+    #handle if pause
+    if call_state["from"]=="pause" and len(planets):
+        for p in planets:
+            p.t=time()
+            p.beforeoffset=True
    
     if level > len(level_init) - 1:
         return {'from': 'play', 'to': 'end_menu', 'end_menu_title': 'The End'},0,[],[],5
     else:
         lvlinit=level_init[level]
-     #create planet
+    #create planet if not already exist
     if len(planets)==0:
         for i in lvlinit.keys():
             if i=="basic_planet":
@@ -87,7 +91,6 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    #important stop
                     return {'from': 'play', 'to': 'pause'},level,balls,planets,life
                 elif event.key == pygame.K_RIGHT:
                     b=ball(screen,randinscreen())
@@ -121,8 +124,9 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
                             balls.remove(i)
                         balls.remove(j)
                 for p in planets:
-                    if  i.iscolide(p.position,p.radius):
-                        p.life-=1
+                    if  i.iscolide(p.position,p.radius) :
+                        if  t+invt<time():
+                            p.life-=1
                         if i in balls:
                             balls.remove(i)
                     if p.life==0:
@@ -131,7 +135,7 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
                             balls.extend(p.explode())
 
         for p in planets:
-            if (p.position-mp).length()<= life+p.radius and t+1<time():
+            if (p.position-mp).length()<= life+p.radius and t+invt<time():
                 life=0
             p.draw()
             b=p.addball(mp)
@@ -153,5 +157,5 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
 if __name__=="__main__":
 
     screen=gameinit()
-    print(play(screen,{'to': 'main_menu'}))
+    print(play(screen,{'from':"test",'to': 'main_menu'}))
     pygame.quit()

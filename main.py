@@ -6,6 +6,7 @@ from setting_menu import *
 from pause_menu import *
 from setting import *
 
+
 if __name__ == '__main__':
     screen = gameinit()
     stack = [{'to': 'main_menu'}]
@@ -29,6 +30,10 @@ if __name__ == '__main__':
         return_state = 0
         
         if current_state['to'] == 'main_menu':
+            balls=[]
+            planets=[]
+            life=5
+            level=0
             return_state = main_menu(screen, current_state)
             click_sound.set_volume(constant["sound_volume"])
             click_sound.play()
@@ -45,6 +50,10 @@ if __name__ == '__main__':
             click_sound.play()
 
         elif current_state['to'] == 'end_menu':
+            balls=[]
+            planets=[]
+            life=5
+            level=0
             return_state = end_menu(screen, current_state)
             click_sound.play()
         elif current_state['to'] == 'quit':

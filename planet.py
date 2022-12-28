@@ -22,18 +22,19 @@ class basic_planet():
         self.screen=screen
         self.t=time()
         self.shootinterval=shootinterval
+        self.beforeoffset=True
         self.offset=offset
     def draw(self):
-        pie(self.screen,INVBLUE,self.position,self.radius+3,0,360*(time()-self.t)/(self.shootinterval+self.offset))
+        pie(self.screen,INVBLUE,self.position,self.radius+3,0,360*(time()-self.t)/(self.shootinterval+self.offset*self.beforeoffset))
         pygame.draw.circle(self.screen,BLUE,self.position,self.radius,0)
         font = pygame.font.SysFont(font__, 20)
         text = font.render(str(self.life), 1, WHITE)
         text_rect = text.get_rect(center=self.position)
         self.screen.blit(text, text_rect)
     def addball(self,mp):
-        if time()-self.t>=self.shootinterval+self.offset:
+        if time()-self.t>=self.shootinterval+self.offset*self.beforeoffset:
             self.t=time()
-            self.offset=0
+            self.beforeoffset=False
             return [ball(self.screen,self.position+(mp-self.position).normalize()*self.radius*1.3,(mp-self.position).normalize()*6)]
         else:
         	return 0
@@ -46,18 +47,19 @@ class triple_shoot_planet():
         self.screen=screen
         self.t=time()
         self.shootinterval=shootinterval
+        self.beforeoffset=True
         self.offset=offset
     def draw(self):
-        pie(self.screen,INVGREEN,self.position,self.radius+3,0,360*(time()-self.t)/(self.shootinterval+self.offset))
+        pie(self.screen,INVGREEN,self.position,self.radius+3,0,360*(time()-self.t)/(self.shootinterval+self.offset*self.beforeoffset))
         pygame.draw.circle(self.screen,GREEN,self.position,self.radius,0)
         font = pygame.font.SysFont(font__, 20)
         text = font.render(str(self.life), 1, WHITE)
         text_rect = text.get_rect(center=self.position)
         self.screen.blit(text, text_rect)
     def addball(self,mp):
-        if time()-self.t>=self.shootinterval+self.offset:
+        if time()-self.t>=self.shootinterval+self.offset*self.beforeoffset:
             self.t=time()
-            self.offset=0
+            self.beforeoffset=False
             b1=ball(self.screen,self.position+(mp-self.position).normalize()*self.radius*1.3,(mp-self.position).normalize()*6)
             b2=ball(self.screen,self.position+(mp-self.position).normalize().rotate(20)*self.radius*1.3,(mp-self.position).normalize()*6)
             b3=ball(self.screen,self.position+(mp-self.position).normalize().rotate(-20)*self.radius*1.3,(mp-self.position).normalize()*6)
@@ -73,18 +75,19 @@ class explode_planet():
         self.screen=screen
         self.t=time()
         self.shootinterval=shootinterval
+        self.beforeoffset=True
         self.offset=offset
     def draw(self):
-        pie(self.screen,INVRED,self.position,self.radius+3,0,360*(time()-self.t)/(self.shootinterval+self.offset))
+        pie(self.screen,INVRED,self.position,self.radius+3,0,360*(time()-self.t)/(self.shootinterval+self.offset*self.beforeoffset))
         pygame.draw.circle(self.screen,RED,self.position,self.radius,0)
         font = pygame.font.SysFont(font__, 20)
         text = font.render(str(self.life), 1, WHITE)
         text_rect = text.get_rect(center=self.position)
         self.screen.blit(text, text_rect)
     def addball(self,mp):
-        if time()-self.t>=self.shootinterval+self.offset:
+        if time()-self.t>=self.shootinterval+self.offset*self.beforeoffset:
             self.t=time()
-            self.offset=0
+            self.beforeoffset=False
             b1=ball(self.screen,self.position+(mp-self.position).normalize()*self.radius*1.3,(mp-self.position).normalize()*6)
             return [b1]
         else:
