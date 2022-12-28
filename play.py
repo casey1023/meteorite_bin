@@ -85,7 +85,7 @@ def play(screen, call_state,level=0,balls=[],planets=[],life=5):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     #important stop
-                    return {'from': 'play', 'to': 'pause'},level,balls,palnets,life
+                    return {'from': 'play', 'to': 'pause'},level,balls,planets,life
                 elif event.key == pygame.K_RIGHT:
                     b=ball(screen,randinscreen())
                     balls.append(b)

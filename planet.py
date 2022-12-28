@@ -12,7 +12,7 @@ def pie(scr,color,center,radius,start_angle,stop_angle):
     while theta <= stop_angle:
         pygame.draw.line(scr,color,center, 
         (center[0]+radius*cos(radians(theta)),center[1]+radius*sin(radians(theta))),2)
-        theta+=0.5
+        theta+=1.5
 
 class basic_planet():
     def __init__(self,screen, position,offset=0,life=2, radius=20, shootinterval=4):

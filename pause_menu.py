@@ -1,7 +1,5 @@
 from button import *
 from setting import *
-
-
 #### DNF
 
 def pause_menu(screen, call_state):
