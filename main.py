@@ -8,57 +8,90 @@ from setting import *
 
 
 if __name__ == '__main__':
+    #game init
     screen = gameinit()
-    stack = [{'to': 'main_menu'}]
+
+    #const init
     constant=readconstant()
     locals().update(constant)
+
+    #music init
     pygame.mixer.init()
     pygame.mixer.music.load('res/Winterglade.mp3') 
-    pygame.mixer.music.play(-1,start=2)
+    pygame.mixer.music.play(-1, start=2)
     pygame.mixer.music.set_volume(bgm_volume)
+
+    #audio effect
     click_sound = pygame.mixer.Sound('res/c.mp3')
     pop_sound = pygame.mixer.Sound('res/pop.wav')
 
-    balls=[]
-    planets=[]
-    life=5
-    level=0
+    #play basic setting
+    balls = []
+    planets = []
+    life = 5
+    level = 0
+
+    #start game
+    stack = [{'to': 'main_menu'}]   #work thread
 
     while len(stack) > 0:
+
         current_state = stack[0]
         del stack[0]
         return_state = 0
         
+        #main_menu
         if current_state['to'] == 'main_menu':
-            balls=[]
-            planets=[]
-            life=5
-            level=0
+            #renew game state
+            balls = []
+            planets = []
+            life = 5
+            level = 0
+
+            #start main_menu
             return_state = main_menu(screen, current_state)
+
+            #return audio effect
             click_sound.set_volume(constant["sound_volume"])
             click_sound.play()
 
+        #play
         elif current_state['to'] == 'play':
-            return_state,level,balls,planets,life = play(screen, current_state,level,balls,planets,life)
+            #start play and get current play state
+            return_state, level, balls, planets, life = play(screen, current_state, level, balls, planets, life)
 
+        #pause menu
         elif current_state['to'] == 'pause_menu':
+            #start pause_menu
             return_state = pause_menu(screen, current_state)
         
+        #setting menu
         elif current_state['to'] == 'setting_menu':
-            return_state,constant = setting_menu(screen, current_state,constant)
+            #start setting_menu and get new constant
+            return_state,constant = setting_menu(screen, current_state, constant)
+
+            #audio effect
             click_sound.set_volume(constant["sound_volume"])
             click_sound.play()
 
         elif current_state['to'] == 'end_menu':
-            balls=[]
-            planets=[]
-            life=5
-            level=0
+            #renew game state
+            balls = []
+            planets = []
+            life = 5
+            level = 0
+
+            #start end_menu
             return_state = end_menu(screen, current_state)
+
+            #audio effect
             click_sound.play()
+        
+        #quit
         elif current_state['to'] == 'quit':
             pygame.quit()
         
+        #add new work or state in thread
         if return_state != 0:
             stack.append(return_state)
 
