@@ -1,6 +1,8 @@
 from gameinit import *
 from play import *
 from main_menu import *
+from intro_menu import*
+from res_menu import *
 from win_menu import *
 from gameover_menu import *
 from setting_menu import *
@@ -51,6 +53,26 @@ if __name__ == '__main__':
 
             #start main_menu
             return_state = main_menu(screen, current_state)
+
+            #return audio effect
+            click_sound.set_volume(constant["sound_volume"])
+            click_sound.play()
+
+        #intro_menu
+        if current_state['to'] == 'intro_menu':
+
+            #start main_menu
+            return_state = intro_menu(screen, current_state)
+
+            #return audio effect
+            click_sound.set_volume(constant["sound_volume"])
+            click_sound.play()
+        
+        #res_menu
+        if current_state['to'] == 'res_menu':
+
+            #start main_menu
+            return_state = res_menu(screen, current_state)
 
             #return audio effect
             click_sound.set_volume(constant["sound_volume"])

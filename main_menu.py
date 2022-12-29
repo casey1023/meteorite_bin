@@ -16,7 +16,9 @@ def main_menu(screen, call_state):
     #create buttons
     start_button =      button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 3, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Start")
     setting_button =    button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 4, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8,text = "Setting")
-    quit_button =       button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 5, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Quit")
+    intro_button =      button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 5, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Introduction",big = 30)
+    quit_button =       button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 6, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Quit")
+    res_button =        button(SCREEN_WIDTH / 7*6, SCREEN_HEIGHT / 11*10, SCREEN_WIDTH / 6, SCREEN_HEIGHT / 15, big = 20, text = "Resources")
 
     while True:
         for event in pygame.event.get():
@@ -35,6 +37,12 @@ def main_menu(screen, call_state):
                 elif setting_button.isOver(pos):
                     return {'from': 'main_menu', 'to': 'setting_menu'}
                 
+                #intro_menu
+                elif intro_button.isOver(pos):
+                    return {'from': 'main_menu', 'to': 'intro_menu'}
+                #res_menu
+                elif res_button.isOver(pos):
+                    return {'from': 'main_menu', 'to': 'res_menu'}
                 #quit
                 elif quit_button.isOver(pos):
                     return {'from': "main_menu", 'to': 'quit'}
@@ -45,8 +53,9 @@ def main_menu(screen, call_state):
         #draw button
         start_button.draw(screen,mouse_pos)
         setting_button.draw(screen,mouse_pos)
+        intro_button.draw(screen,mouse_pos)
         quit_button.draw(screen,mouse_pos)
-
+        res_button.draw(screen,mouse_pos)
         pygame.display.flip()
         fpsClock.tick(FPS)
 
