@@ -47,12 +47,10 @@ def setting_menu(screen, call_state,constant):
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                writeconstant(constant)
                 return {'from': "setting_menu", 'to': 'quit'} , constant
             if event.type == pygame.MOUSEBUTTONUP:
                 pos = pygame.mouse.get_pos()
                 if back_button.isOver(pos):
-                    writeconstant(constant)
                     return {'from': 'setting_menu', 'to': call_state['from']} , constant
             
             #FPS button update
