@@ -34,6 +34,8 @@ def setting_menu(screen, call_state,constant):
     back_button = button(SCREEN_WIDTH/2,SCREEN_HEIGHT/7*6,SCREEN_WIDTH/3,SCREEN_HEIGHT/8,text="Back", norm_color=WHITE, on_color=GREY)
     music_slider = slider(SCREEN_WIDTH/7*2,SCREEN_WIDTH/7*5,SCREEN_HEIGHT/2.5, initial = constant["bgm_volume"])
     sound_slider = slider(SCREEN_WIDTH/7*2,SCREEN_WIDTH/7*5,SCREEN_HEIGHT/2, initial = constant["sound_volume"], pop_sound = True)
+    FPS60_checkbox = Checkbox(screen, SCREEN_WIDTH/3,SCREEN_HEIGHT/7*4, caption = '60', current_FPS = constant['FPS'])
+    FPS30_checkbox = Checkbox(screen, SCREEN_WIDTH/5 * 3,SCREEN_HEIGHT/7*4, caption = '30', current_FPS = constant['FPS'])
     print(sound_slider.pop_sound)
     
 
@@ -49,11 +51,19 @@ def setting_menu(screen, call_state,constant):
                 pos = pygame.mouse.get_pos()
                 if back_button.isOver(pos):
                     return {'from': 'setting_menu', 'to': call_state['from']} , constant
+            
+            #FPS button update
+            FPS60_checkbox.update_checkbox(event)
+            FPS30_checkbox.update_checkbox(event)
+            FPS60_checkbox.clear()
+            FPS30_checkbox.clear()
         
 
         mouse_pos = pygame.mouse.get_pos()
         screen.blit(pic_setting_new,(0,0))
         back_button.draw(screen,mouse_pos)
+        FPS60_checkbox.draw()
+        FPS30_checkbox.draw()
         screen.blit(title, text_rect)
         screen.blit(music_word, music_rect)
         screen.blit(sound_word, sound_rect)
@@ -61,6 +71,8 @@ def setting_menu(screen, call_state,constant):
         sound_slider.draw(screen,mouse_pos,pygame.mouse.get_pressed()[0])
         constant["bgm_volume"] = music_slider.value()
         constant["sound_volume"] = sound_slider.value()
+        constant["FPS"] = 60 if FPS60_checkbox.is_checked() else 30
+        
         
         pygame.mixer.music.set_volume(constant["bgm_volume"])
         pop_sound.set_volume(constant["sound_volume"])
