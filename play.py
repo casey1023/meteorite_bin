@@ -70,18 +70,11 @@ def play(screen, call_state, level = 0, balls = [], planets = [], life = 5):
             if event.type == pygame.KEYDOWN:
 				#pause
                 if event.key == pygame.K_ESCAPE:
-<<<<<<< HEAD
-                    #important stop
-                    return {'from': 'play', 'to': 'pause'},balls,planets,life
-                elif event.key == pygame.K_RIGHT:
-                    b=ball(screen,randinscreen())
-=======
                     return {'from': 'play', 'to': 'pause_menu'}, level, balls, planets, life
 				
 				#random add ball
                 elif event.key == pygame.K_RIGHT:	#random add 
                     b = ball(screen, randinscreen())
->>>>>>> 501ccb8cf4bfec7ec6b44621605d79ec28476fa8
                     balls.append(b)
 
 				#cheat
@@ -115,8 +108,10 @@ def play(screen, call_state, level = 0, balls = [], planets = [], life = 5):
 			#check collide with mouse
             if i.iscolide(mp, life + 5):
                 life -= 1
-                pop_sound.play()
                 balls.remove(i)
+                #audio effect
+                pop_sound.set_volume(constant["sound_volume"])
+                pop_sound.play()
 			
 
             if i.isinvincible() == False:
