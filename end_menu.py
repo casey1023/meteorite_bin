@@ -8,7 +8,7 @@ def end_menu(screen, caller_state):
     #get const
     constant=readconstant()
     locals().update(constant)
-
+    end_sound = pygame.mixer.Sound('res/end.mp3')
     fpsClock = pygame.time.Clock()
 
     #screen init
@@ -16,6 +16,9 @@ def end_menu(screen, caller_state):
     font = pygame.font.SysFont(font__, 50)
     if 'end_menu_title' in caller_state:
         title = font.render(caller_state['end_menu_title'], True, WHITE)
+        pygame.mixer.music.fadeout(2500)
+        end_sound.play()
+
     else:
         title = font.render("You Die", True, WHITE)
     text_rect = title.get_rect(center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 6))
@@ -37,10 +40,12 @@ def end_menu(screen, caller_state):
 
                 #play
                 if start_button.isOver(pos):
+                    pygame.mixer.music.play(-1, start=2)
                     return {'from': 'end_menu', 'to': 'play'}
                 
                 #setting_menu
                 elif setting_button.isOver(pos):
+                    pygame.mixer.music.play(-1, start=2)
                     return {'from': 'end_menu', 'to': 'setting_menu'}
                 
                 #quit

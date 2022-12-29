@@ -25,6 +25,7 @@ if __name__ == '__main__':
     click_sound = pygame.mixer.Sound('res/c.mp3')
     pop_sound = pygame.mixer.Sound('res/pop.wav')
 
+
     #play basic setting
     balls = []
     planets = []
@@ -39,7 +40,7 @@ if __name__ == '__main__':
         current_state = stack[0]
         del stack[0]
         return_state = 0
-        
+        print(current_state)
         #main_menu
         if current_state['to'] == 'main_menu':
             #renew game state
@@ -76,6 +77,7 @@ if __name__ == '__main__':
 
         #end_menu
         elif current_state['to'] == 'end_menu':
+
             #renew game state
             balls = []
             planets = []
