@@ -53,7 +53,10 @@ def play(screen, call_state, level = 0, balls = [], planets = [], life = 5):
                 for j in lvlinit[i]:
                     p = basic_planet(screen, *j)
                     planets.append(p)
-
+            elif i == "double_shoot_planet":
+                for j in lvlinit[i]:
+                    p = double_shoot_planet(screen, *j)
+                    planets.append(p)
             elif i == "triple_shoot_planet":
                 for j in lvlinit[i]:
                     p = triple_shoot_planet(screen, *j)
