@@ -8,10 +8,6 @@ pic_setting = pygame.image.load("res/setting.jpg")
 pic_setting_new = pygame.transform.scale(pic_setting,(SCREEN_WIDTH,SCREEN_HEIGHT))
 
 def setting_menu(screen, call_state,constant):
-    # constant=readconstant()
-    # locals().update(constant)
-    # print(f'setting read {bgm_volume}')
-    print(constant)
     fpsClock = pygame.time.Clock()
 
     screen.fill(BLACK)

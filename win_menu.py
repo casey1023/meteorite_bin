@@ -4,13 +4,17 @@ from button import *
 from play import *
 from setting import *
 
+pic_win = pygame.image.load("res/falling-gold.jpg")
+pic_win_new = pygame.transform.scale(pic_win,(SCREEN_WIDTH,SCREEN_HEIGHT))
+
+
 def win_menu(screen, caller_state):
     #get const
     constant=readconstant()
     locals().update(constant)
     end_sound = pygame.mixer.Sound('res/end.mp3')
     fpsClock = pygame.time.Clock()
-
+    
     #screen init
     screen.fill(BLACK)
     font = pygame.font.SysFont(font__, 50)
@@ -21,6 +25,7 @@ def win_menu(screen, caller_state):
         pygame.mixer.music.fadeout(2500)
         end_sound.play()
 
+    screen.blit(pic_win_new,(0,0))
     text_rect = title.get_rect(center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 6))
     screen.blit(title, text_rect)
 
