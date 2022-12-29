@@ -34,6 +34,8 @@ def setting_menu(screen, call_state,constant):
     back_button = button(SCREEN_WIDTH/2,SCREEN_HEIGHT/7*6,SCREEN_WIDTH/3,SCREEN_HEIGHT/8,text="Back", norm_color=WHITE, on_color=GREY)
     music_slider = slider(SCREEN_WIDTH/7*2,SCREEN_WIDTH/7*5,SCREEN_HEIGHT/2.5, initial = constant["bgm_volume"])
     sound_slider = slider(SCREEN_WIDTH/7*2,SCREEN_WIDTH/7*5,SCREEN_HEIGHT/2, initial = constant["sound_volume"], pop_sound = True)
+    FPS60_checkbox = Checkbox(screen, SCREEN_WIDTH/3,SCREEN_HEIGHT/7*4, caption = '60')
+    FPS30_checkbox = Checkbox(screen, SCREEN_WIDTH/5 * 3,SCREEN_HEIGHT/7*4, caption = '30')
     print(sound_slider.pop_sound)
     
 
@@ -51,11 +53,15 @@ def setting_menu(screen, call_state,constant):
                 if back_button.isOver(pos):
                     # writeconstant(constant)
                     return {'from': 'setting_menu', 'to': call_state['from']} , constant
+            FPS60_checkbox.update_checkbox(event)
+            FPS30_checkbox.update_checkbox(event)
         
 
         mouse_pos = pygame.mouse.get_pos()
         screen.blit(pic_setting_new,(0,0))
         back_button.draw(screen,mouse_pos)
+        FPS60_checkbox.draw()
+        FPS30_checkbox.draw()
         screen.blit(title, text_rect)
         screen.blit(music_word, music_rect)
         screen.blit(sound_word, sound_rect)
