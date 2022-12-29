@@ -146,7 +146,7 @@ def play(screen, call_state, level = 0, balls = [], planets = [], life = 5):
 						
 						#handle explode planet
                         if isinstance(p,explode_planet):
-                            balls.extend(p.explode())
+                            balls.extend(p.explode(mp))
 
 		#check mouse collide with planets
         for p in planets:
