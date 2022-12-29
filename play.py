@@ -40,9 +40,9 @@ def play(screen, call_state, level = 0, balls = [], planets = [], life = 5):
     my_font = pygame.font.SysFont(font__, 30)
 
     #handle if pause
-    if call_state["from"] == "pause" and len(planets):
+    if call_state["from"] == "pause_menu" and len(planets):
         for p in planets:
-            p.t = time()
+            p.reset_time()
             p.beforeoffset = True
 	
 	#if ended

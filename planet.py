@@ -37,12 +37,16 @@ class basic_planet():
 
     def addball(self, mp):
         if time() - self.t >= self.shootinterval + self.offset * self.beforeoffset:
+            #print(time() - self.t , self.shootinterval , self.offset , self.beforeoffset)
             self.t = time()
             self.beforeoffset = False
             return [ball(self.screen, self.position + (mp - self.position).normalize() * self.radius * 1.3,\
                 (mp - self.position).normalize() * 6)]
         else:
-        	return 0
+            return 0
+    def reset_time(self):
+        self.t = time()
+        return None
 
 class triple_shoot_planet():
     def __init__(self, screen, position, offset = 0,life = 1, radius = 20, shootinterval = 4):
@@ -74,6 +78,9 @@ class triple_shoot_planet():
             return [b1, b2, b3]
         else:
             return 0
+    def reset_time(self):
+        self.t = time()
+        return None
 
 class explode_planet():
     def __init__(self, screen, position, offset = 0, life = 1, radius = 20, shootinterval = 4):
@@ -106,3 +113,7 @@ class explode_planet():
         
     def explode(self,mp):
         return [ball(self.screen, self.position + (mp - self.position).normalize().rotate(i * 72) * self.radius * 1.3, (mp - self.position).normalize() * 6) for i in range(5)]
+    
+    def reset_time(self):
+        self.t = time()
+        return None
