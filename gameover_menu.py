@@ -62,6 +62,6 @@ def gameover_menu(screen, caller_state):
         quit_button.draw(screen,mouse_pos)
 
         pygame.display.flip()
-        fpsClock.tick(FPS)
+        fpsClock.tick(25)
 
         ###############DNF
