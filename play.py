@@ -14,7 +14,10 @@ locals().update(constant)
 
 #audio effect init
 pygame.mixer.init()
+pygame.mixer.pre_init(44100, 16, 2, 4096)
 pop_sound = pygame.mixer.Sound('res/p.wav')
+smoke_bomb_sound = pygame.mixer.Sound(file = 'res/smoke_bomb.wav')
+
 
 #invincible time
 invt=5
@@ -138,6 +141,8 @@ def play(screen, call_state, level = 0, balls = [], planets = [], life = 5):
 					#remove dead planet
                     if p.life == 0:
                         planets.remove(p)
+                        smoke_bomb_sound.set_volume(constant["sound_volume"])
+                        smoke_bomb_sound.play()
 						
 						#handle explode planet
                         if isinstance(p,explode_planet):
