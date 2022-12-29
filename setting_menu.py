@@ -33,7 +33,8 @@ def setting_menu(screen, call_state,constant):
 
     back_button = button(SCREEN_WIDTH/2,SCREEN_HEIGHT/7*6,SCREEN_WIDTH/3,SCREEN_HEIGHT/8,text="Back", norm_color=WHITE, on_color=GREY)
     music_slider = slider(SCREEN_WIDTH/7*2,SCREEN_WIDTH/7*5,SCREEN_HEIGHT/2.5, initial = constant["bgm_volume"])
-    sound_slider = slider(SCREEN_WIDTH/7*2,SCREEN_WIDTH/7*5,SCREEN_HEIGHT/2, initial = constant["sound_volume"])
+    sound_slider = slider(SCREEN_WIDTH/7*2,SCREEN_WIDTH/7*5,SCREEN_HEIGHT/2, initial = constant["sound_volume"], pop_sound = True)
+    print(sound_slider.pop_sound)
     
 
     # pygame.mixer.music.load('res/Winterglade.mp3') 
@@ -61,7 +62,7 @@ def setting_menu(screen, call_state,constant):
         music_slider.draw(screen,mouse_pos,pygame.mouse.get_pressed()[0])
         sound_slider.draw(screen,mouse_pos,pygame.mouse.get_pressed()[0])
         constant["bgm_volume"] = music_slider.value()
-        constant["sound_volume"] =sound_slider.value()
+        constant["sound_volume"] = sound_slider.value()
         
         pygame.mixer.music.set_volume(constant["bgm_volume"])
         pygame.display.flip()

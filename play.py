@@ -6,150 +6,169 @@ from ball import *
 from planet import *
 from setting import *
 from time import time
+from level_map import *
 
-constant=readconstant()
+#get const
+constant = readconstant()
 locals().update(constant)
+
+#audio effect init
 pygame.mixer.init()
 pop_sound = pygame.mixer.Sound('res/p.wav')
-level_init=[]
 
-#lv1
-level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4),0,1,20,3],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),1.5,1,20,3]]})
-#lv2
-level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),1],[(SCREEN_WIDTH/4,SCREEN_HEIGHT*3/4),2],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT/4),3]]})
-#lv3
-level_init.append({"basic_planet":[[(SCREEN_WIDTH*2/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH/4,SCREEN_HEIGHT*2/4),1],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*2/4),2],[(SCREEN_WIDTH/2,SCREEN_HEIGHT*3/4)]]})
-#lv4
-level_init.append({"basic_planet":[[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT/30),0,1],[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*3/30),1,1],[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*5/30),2,1],[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*7/30),3,1]
-,[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*9/30),0,1],[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*11/30),1,1],[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*13/30),2,1],[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*15/30),3,1]
-,[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*17/30),0,1],[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*19/30),1,1],[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*21/30),2,1],[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*23/30),3,1]
-,[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*25/30),0,1],[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*27/30),1,1],[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*29/30),2,1]]})
-#lv5
-level_init.append({"basic_planet":[[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*5/30),1,10,100,0.5]]})
-#lv6
-level_init.append({"basic_planet":[[(SCREEN_WIDTH*7.5/30,SCREEN_HEIGHT*6/30),0,2,20,0.5],[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*6/30),0,2,20,0.5],[(SCREEN_WIDTH*22.5/30,SCREEN_HEIGHT*6/30),0,2,20,0.5]
-,[(SCREEN_WIDTH*7.5/30,SCREEN_HEIGHT*24/30),4,2,20,0.5],[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*24/30),4,2,20,0.5],[(SCREEN_WIDTH*22.5/30,SCREEN_HEIGHT*24/30),4,2,20,0.5]]})
-#lv7
-level_init.append({"basic_planet":[[(SCREEN_WIDTH*25/30,SCREEN_HEIGHT*5/30),0,2,7,0.5]]})
-#lv8
-level_init.append({"basic_planet":[[(SCREEN_WIDTH*5/30,SCREEN_HEIGHT*5/30),0,1,10,2],[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*5/30),1,2,15,2],[(SCREEN_WIDTH*25/30,SCREEN_HEIGHT*5/30),0,1,10,2]
-,[(SCREEN_WIDTH*5/30,SCREEN_HEIGHT*15/30),1,2,15,2],[(SCREEN_WIDTH*25/30,SCREEN_HEIGHT*15/30),1,2,15,2]
-,[(SCREEN_WIDTH*5/30,SCREEN_HEIGHT*25/30),0,1,10,2],[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*25/30),1,2,15,2],[(SCREEN_WIDTH*25/30,SCREEN_HEIGHT*25/30),0,1,10,2]]})
-#lv9(先打眼睛)
-level_init.append({"basic_planet":[[(SCREEN_WIDTH*10/30,SCREEN_HEIGHT*10/30),1,2,20,20],[(SCREEN_WIDTH*20/30,SCREEN_HEIGHT*10/30),1,2,20,20]
-,[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*25/30),0,1,20,1.5],[(SCREEN_WIDTH*13/30,SCREEN_HEIGHT*24.4/30),1,1,20,1.5],[(SCREEN_WIDTH*17/30,SCREEN_HEIGHT*24.4/30),1,1,20,1.5],[(SCREEN_WIDTH*11/30,SCREEN_HEIGHT*23.5/30),2,1,20,1.5],[(SCREEN_WIDTH*19/30,SCREEN_HEIGHT*23.5/30),2,1,20,1.5],[(SCREEN_WIDTH*9/30,SCREEN_HEIGHT*22/30),3,1,20,1.5],[(SCREEN_WIDTH*21/30,SCREEN_HEIGHT*22/30),3,1,20,1.5]]})
-#lv10
-#lv11
-#lv12
-#lv13
-#lv14
-# #lvmax
+#invincible time
+invt=5
 
-# level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),2]]})
-# level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4)],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),1],[(SCREEN_WIDTH/4,SCREEN_HEIGHT*3/4),2],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT/4),3]]})
-
-title=["idk" for i in range(10)]
 
 def randinscreen():
-    return (random.randint(0,SCREEN_WIDTH),random.randint(0,SCREEN_HEIGHT))
+    return (random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT))
 
-def play(screen, call_state,level=0,balls=[],planets=[],life=5):
-    constant=readconstant()
+def play(screen, call_state, level = 0, balls = [], planets = [], life = 5):
+    #get const
+    constant = readconstant()
     locals().update(constant)
+
     fpsClock = pygame.time.Clock()
-    t=time()
-    running = True
+    t = time()		#get start time
+
     my_font = pygame.font.SysFont(font__, 30)
-   
+
+    #handle if pause
+    if call_state["from"] == "pause" and len(planets):
+        for p in planets:
+            p.t = time()
+            p.beforeoffset = True
+	
+	#if ended
     if level > len(level_init) - 1:
-        return {'from': 'play', 'to': 'end_menu', 'end_menu_title': 'The End'}
+        return {'from': 'play', 'to': 'end_menu', 'end_menu_title': 'The End'}, 0, [], [], 5
     else:
         lvlinit=level_init[level]
-     #create planet
-    for i in lvlinit.keys():
-        if i=="basic_planet":
-            for j in lvlinit[i]:
-                p=basic_planet(screen,*j)
-                planets.append(p)
-        elif i=="triple_shoot_planet":
-            for j in lvlinit[i]:
-                p=triple_shoot_planet(screen,*j)
-                planets.append(p)
-        elif i=="explode_planet":
-            for j in lvlinit[i]:
-                p=explode_planet(screen,*j)
-                planets.append(p)
+	
+    #create planet if not already exist
+    if len(planets)==0:
+
+        for i in lvlinit.keys():
+            if i == "basic_planet":
+                for j in lvlinit[i]:
+                    p = basic_planet(screen, *j)
+                    planets.append(p)
+
+            elif i == "triple_shoot_planet":
+                for j in lvlinit[i]:
+                    p = triple_shoot_planet(screen, *j)
+                    planets.append(p)
+
+            elif i == "explode_planet":
+                for j in lvlinit[i]:
+                    p = explode_planet(screen, *j)
+                    planets.append(p)
+
     #start running
-    while running and len(planets):
+    while len(planets):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
+				#pause
                 if event.key == pygame.K_ESCAPE:
+<<<<<<< HEAD
                     #important stop
                     return {'from': 'play', 'to': 'pause'},balls,planets,life
                 elif event.key == pygame.K_RIGHT:
                     b=ball(screen,randinscreen())
+=======
+                    return {'from': 'play', 'to': 'pause_menu'}, level, balls, planets, life
+				
+				#random add ball
+                elif event.key == pygame.K_RIGHT:	#random add 
+                    b = ball(screen, randinscreen())
+>>>>>>> 501ccb8cf4bfec7ec6b44621605d79ec28476fa8
                     balls.append(b)
-                elif event.key == pygame.K_DOWN:#cheat
+
+				#cheat
+                elif event.key == pygame.K_DOWN:
                     planets.clear()
                     balls.clear()
-                    return play(screen,call_state,level+1)
+                    return play(screen, call_state, level + 1)
+			
+			#quit game
             elif event.type == pygame.QUIT:
-                running = False
-                return {'from': 'play', 'to': 'quit'}
+                return {'from': 'play', 'to': 'quit'}, 0, [], [], 5
+
 
         screen.fill(BLACK)
-        mp=Vector2(pygame.mouse.get_pos())
-        if life!=0:
-            pygame.draw.circle(screen,WHITE,mp,life+5,0)
+        mp=Vector2(pygame.mouse.get_pos())	#get mouse position
+
+		#update mouse position and check if the player is died
+        if life != 0:
+            pygame.draw.circle(screen, WHITE, mp, life + 5, 0)
         else:
             balls.clear()
             planets.clear()
-            return {'from': 'play', 'to': 'end_menu'}
+            return {'from': 'play', 'to': 'end_menu'}, 0, [], [], 5
 
+		#deal with balls
         for i in balls:
+
+			#update ball pos
             i.move(mp)
-            if i.iscolide(mp,life+5):
-                life-=1
+
+			#check collide with mouse
+            if i.iscolide(mp, life + 5):
+                life -= 1
                 pop_sound.play()
                 balls.remove(i)
-            if i.isinvincible()==False:
+			
+
+            if i.isinvincible() == False:
+				#check collide with other balls
                 for j in balls:
-                    if i!=j and i.iscolide(j.position,j.radius):
+                    if i != j and i.iscolide(j.position, j.radius):
                         if i in balls:
                             balls.remove(i)
                         balls.remove(j)
+				
+				#check collide with other planets
                 for p in planets:
-                    if  i.iscolide(p.position,p.radius):
-                        p.life-=1
+                    if  i.iscolide(p.position, p.radius):
+						#check whether in invincible time
+                        if  t + invt < time():
+                            p.life -= 1
+						
                         if i in balls:
                             balls.remove(i)
-                    if p.life==0:
+					
+					#remove dead planet
+                    if p.life == 0:
                         planets.remove(p)
-                        if isinstance(p,explode_planet):#handle explode planet
+						
+						#handle explode planet
+                        if isinstance(p,explode_planet):
                             balls.extend(p.explode())
 
+		#check mouse collide with planets
         for p in planets:
-            if (p.position-mp).length()<= life+p.radius and t+1<time():
-                life=0
+            if (p.position - mp).length() <= life + p.radius and t + invt < time():
+                life = 0
             p.draw()
-            b=p.addball(mp)
+
+            b = p.addball(mp)
             if b:
                 balls.extend(b)
 
-        lifetext = my_font.render('Life : '+str(life), False, (0,0,255))
-        screen.blit(lifetext, (5,5))
-        lvltext = my_font.render('LVL : '+str(level), False, (0,0,255))
-        screen.blit(lvltext, (SCREEN_WIDTH-100,5))
-        titletext = my_font.render(title[level], False, (0,0,255))
-        text_rect = titletext.get_rect(center=(SCREEN_WIDTH/2,10))
+        lifetext = my_font.render('Life : ' + str(life), False, WHITE)
+        screen.blit(lifetext, (5, 3))
+        lvltext = my_font.render('LVL : ' + str(level), False, WHITE)
+        screen.blit(lvltext, (SCREEN_WIDTH - 100, 3))
+        titletext = my_font.render(title[level], False, WHITE)
+        text_rect = titletext.get_rect(center = (SCREEN_WIDTH / 2, 20))
         screen.blit(titletext, text_rect)
         pygame.display.flip()
         fpsClock.tick(FPS)
 
-    return play(screen,call_state,level+1,balls)
+    return play(screen, call_state, level + 1, balls)
 
 if __name__=="__main__":
 
-    screen=gameinit()
-    play(screen,{'to': 'main_menu'})
+    screen = gameinit()
+    print(play(screen, {'from': "test", 'to': 'main_menu'}))
     pygame.quit()
