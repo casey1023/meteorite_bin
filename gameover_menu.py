@@ -8,16 +8,18 @@ def gameover_menu(screen, caller_state):
     #get const
     constant=readconstant()
     locals().update(constant)
-    end_sound = pygame.mixer.Sound('res/end.mp3')
+
     fpsClock = pygame.time.Clock()
 
     #screen init
     screen.fill(BLACK)
     font = pygame.font.SysFont(font__, 50)
-
+    if caller_state['from']=='play':
+        pygame.mixer.init()
+        pygame.mixer.music.load('res/rick_roll.mp3')
+        pygame.mixer.music.play(-1)
     title = font.render("gameover", True, WHITE)
-    pygame.mixer.music.fadeout(2500)
-    end_sound.play()
+
 
     text_rect = title.get_rect(center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 6))
     screen.blit(title, text_rect)
@@ -38,12 +40,13 @@ def gameover_menu(screen, caller_state):
 
                 #play
                 if start_button.isOver(pos):
+                    pygame.mixer.init()
+                    pygame.mixer.music.load('res/Winterglade.mp3') 
                     pygame.mixer.music.play(-1, start=2)
                     return {'from': 'gameover_menu', 'to': 'play'}
                 
                 #setting_menu
                 elif setting_button.isOver(pos):
-                    pygame.mixer.music.play(-1, start=2)
                     return {'from': 'gameover_menu', 'to': 'setting_menu'}
                 
                 #quit
