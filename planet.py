@@ -111,7 +111,7 @@ class explode_planet():
         else:
             return 0
         
-    def explode(self):
+    def explode(self,mp):
         return [ball(self.screen, self.position + (mp - self.position).normalize().rotate(i * 72) * self.radius * 1.3, (mp - self.position).normalize() * 6) for i in range(5)]
     
     def reset_time(self):

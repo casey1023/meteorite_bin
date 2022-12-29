@@ -16,18 +16,20 @@ def intro_menu(screen, call_state):
 
     #words
     font = pygame.font.SysFont(font__, 18)
-    words=['123456789456345548564451',
-        'ending menu: Image by rorozoa on Freepik',
-        'setting: Freepik',
-        'Music and Sound Resource:',
-        'Winterglade - Makkon',
-        'Never Gonna Give You Up - Rick Astley',
-        'Pixabay',
-        'Mixkit',
-        'Zedge']
+    words=['Meteorite Bin is a fantastic game that everyone enjoys.', 
+        'Here are the rules to paly.',
+        'When the game gets started,',
+        'you will see balls chasing you because of gravity.',
+        'All you have to do is dodge the balls,',
+        'guiding them to hit the target planets',
+        'In each level, your HP will be reset to 5.',
+        'Collision with meteorites will deal 1 point of damage.',
+        'Collision with planets will lead to death.',
+        'Destroy all target planets before you die.',
+        'Enjoy~',]
     for i in range(len(words)):
         line = font.render(words[i], True, WHITE)
-        line_rect = line.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/3 + SCREEN_HEIGHT/20*i))
+        line_rect = line.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/4 + SCREEN_HEIGHT/20*i))
         screen.blit(line, line_rect)
 
     #create buttons
