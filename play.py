@@ -41,7 +41,7 @@ def play(screen, call_state, level = 0, balls = [], planets = [], life = 5):
 	
 	#if ended
     if level > len(level_init) - 1:
-        return {'from': 'play', 'to': 'end_menu', 'end_menu_title': 'The End'}, 0, [], [], 5
+        return {'from': 'play', 'to': 'win_menu'}, 0, [], [], 5
     else:
         lvlinit=level_init[level]
 	
@@ -97,7 +97,7 @@ def play(screen, call_state, level = 0, balls = [], planets = [], life = 5):
         else:
             balls.clear()
             planets.clear()
-            return {'from': 'play', 'to': 'end_menu'}, 0, [], [], 5
+            return {'from': 'play', 'to': 'gameover_menu'}, 0, [], [], 5
 
 		#deal with balls
         for i in balls:
