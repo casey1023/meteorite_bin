@@ -5,7 +5,7 @@ constant=readconstant()
 locals().update(constant)
 
 class button():
-    def __init__(self, x, y, width, height, big = 40, text = '', norm_color = GREY, on_color = WHITE):
+    def __init__(self, x, y, width, height, big = 40, text = '', norm_color = GREY, on_color = WHITE, not_fill_in = 0):
         self.norm_color = norm_color
         self.on_color = on_color
         self.x = x
@@ -14,6 +14,7 @@ class button():
         self.height = height
         self.text = text
         self.big = big
+        self.not_fill_in = not_fill_in
 
     def draw(self, screen, mouse_pos, outline = None):
         #Call this method to draw the button on the screen
@@ -30,9 +31,9 @@ class button():
         r = pygame.Rect(self.x, self.y, self.width, self.height)
         r.center = (self.x, self.y)
         if (self.isOver(mouse_pos)):
-            pygame.draw.rect(screen, self.on_color, r, 0)
+            pygame.draw.rect(screen, self.on_color, r, self.not_fill_in)
         else:
-            pygame.draw.rect(screen, self.norm_color, r, 0)
+            pygame.draw.rect(screen, self.norm_color, r, self.not_fill_in)
         screen.blit(text, text_rect)
 
     def isOver(self, pos):

@@ -20,7 +20,7 @@ smoke_bomb_sound = pygame.mixer.Sound(file = 'res/smoke_bomb.wav')
 
 
 #invincible time
-invt=5
+invt=2
 
 
 def randinscreen():
