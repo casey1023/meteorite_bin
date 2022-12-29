@@ -69,8 +69,8 @@ class triple_shoot_planet():
             self.t = time()
             self.beforeoffset = False
             b1=ball(self.screen, self.position + (mp - self.position).normalize() * self.radius * 1.3, (mp - self.position).normalize()*6)
-            b2=ball(self.screen, self.position + (mp - self.position).normalize().rotate(20) * self.radius * 1.3, (mp - self.position).normalize() * 6)
-            b3=ball(self.screen, self.position + (mp - self.position).normalize().rotate(-20) * self.radius * 1.3, (mp - self.position).normalize() * 6)
+            b2=ball(self.screen, self.position + (mp - self.position).normalize().rotate(60) * self.radius * 1.3, (mp - self.position).normalize() * 6)
+            b3=ball(self.screen, self.position + (mp - self.position).normalize().rotate(-120) * self.radius * 1.3, (mp - self.position).normalize() * 6)
             return [b1, b2, b3]
         else:
             return 0
