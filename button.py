@@ -45,7 +45,7 @@ class button():
 class Checkbox:
     working = {}
     def __init__(self, surface, x, y, color = (230, 230, 230), caption = "", outline_color = (0, 0, 0),
-                 check_color=(0, 0, 0), font_size = 40, font_color = (0, 0, 0), text_offset = (28, 1)):
+                 check_color=(0, 0, 0), font_size = 40, font_color = (0, 0, 0), text_offset = (28, 1), current_FPS = 60):
         self.surface = surface
         self.x = x
         self.y = y
@@ -60,11 +60,16 @@ class Checkbox:
         self.checkbox_obj = pygame.Rect(self.x, self.y, 12, 12)
         self.checkbox_outline = self.checkbox_obj.copy()
         # variables to test the different states of the checkbox
-        self.checked = False
         self.active = False
-        self.unchecked = True
         self.click = False
-        Checkbox.working[self.caption] = False
+        if str(current_FPS) == self.caption:
+            self.checked = True
+            self.unchecked = False
+            Checkbox.working[self.caption] = True
+        else:
+            self.checked = False
+            self.unchecked = True
+            Checkbox.working[self.caption] = False
 
     def _draw_button_text(self):
         self.font = pygame.font.SysFont(font__, self.fs)
@@ -74,7 +79,6 @@ class Checkbox:
         self.surface.blit(self.font_surf, self.font_pos)
 
     def draw(self):
-        self._mouse_up()
         if self.checked:
             pygame.draw.rect(self.surface, self.color, self.checkbox_obj)
             pygame.draw.rect(self.surface, self.oc, self.checkbox_outline, 1)
@@ -95,29 +99,38 @@ class Checkbox:
             self.active = False
 
     def _mouse_up(self):
-            if self.active and not self.checked and self.click:
-                    self.checked = True
-                    self.unchecked = False
-                    Checkbox.working[self.caption] = True
-                    for i in Checkbox.working.keys():
-                        if i != self.caption:
-                            Checkbox.working[i] = False
-
-            elif self.active and self.checked and self.click:
-                self.checked = False
-                self.unchecked = True
-                Checkbox.working[self.caption] = False
+        if self.active and not self.checked and self.click:
+                self.checked = True
+                self.unchecked = False
+                Checkbox.working[self.caption] = True
                 for i in Checkbox.working.keys():
                     if i != self.caption:
-                        Checkbox.working[i] = True
+                        Checkbox.working[i] = False
 
-            if self.click is True and self.active is False:
-                for i in Checkbox.working.keys():
-                    if Checkbox.working[i] == True and i != self.caption:
-                        self.checked = False
-                        self.unchecked = True
-                        Checkbox.working[self.caption] = False
-                self.active = False
+        elif self.active and self.checked and self.click:
+            self.checked = False
+            self.unchecked = True
+            Checkbox.working[self.caption] = False
+            for i in Checkbox.working.keys():
+                if i != self.caption:
+                    Checkbox.working[i] = True
+
+        if self.click is True and self.active is False:
+            for i in Checkbox.working.keys():
+                if Checkbox.working[i] == True and i != self.caption:
+                    self.checked = False
+                    self.unchecked = True
+                    Checkbox.working[self.caption] = False
+            self.active = False
+    
+    def clear(self):
+        if self.active is False:
+            for i in Checkbox.working.keys():
+                if Checkbox.working[i] == True and i != self.caption:
+                    self.checked = False
+                    self.unchecked = True
+                    Checkbox.working[self.caption] = False
+            self.active = False
 
     def update_checkbox(self, event_object):
         if event_object.type == pygame.MOUSEBUTTONDOWN:
