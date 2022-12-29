@@ -25,7 +25,7 @@ if __name__ == '__main__':
     pygame.mixer.music.set_volume(bgm_volume)
 
     #audio effect
-    click_sound = pygame.mixer.Sound('res/c.mp3')
+    click_sound = pygame.mixer.Sound('res/metal.wav')
     pop_sound = pygame.mixer.Sound('res/pop.wav')
 
 
