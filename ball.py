@@ -8,6 +8,7 @@ constant = readconstant()
 locals().update(constant)
 
 class ball():
+    ball_FPS = constant['FPS']
     def __init__(self, screen, position, init_v = 0, radius = 5):
         self.position = Vector2(position)
         self.radius = radius
@@ -25,7 +26,10 @@ class ball():
     def move(self, mp):
         p = self.position
         # d=1/ (mp-p).length()**2 * (mp-p).normalize()*2000
-        d = (mp - self.position) * 0.0015
+        if ball.ball_FPS == 60:
+            d = (mp - self.position) * 0.0015
+        elif ball.ball_FPS == 30:
+            d = (mp - self.position) * 0.0015 * 4
         self.v += d
 
         #set speed limit
@@ -59,3 +63,8 @@ class ball():
             # print("set to not invincible")
             self.invincible = False
         return self.invincible
+    
+    def FPS_update():
+        constant = readconstant()
+        locals().update(constant)
+        ball.ball_FPS = constant['FPS']

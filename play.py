@@ -28,6 +28,9 @@ def play(screen, call_state, level = 0, balls = [], planets = [], life = 5):
     constant = readconstant()
     locals().update(constant)
 
+    #update ball FPS
+    ball.FPS_update()
+
     fpsClock = pygame.time.Clock()
     t = time()		#get start time
 
@@ -158,7 +161,7 @@ def play(screen, call_state, level = 0, balls = [], planets = [], life = 5):
         text_rect = titletext.get_rect(center = (SCREEN_WIDTH / 2, 20))
         screen.blit(titletext, text_rect)
         pygame.display.flip()
-        fpsClock.tick(FPS)
+        fpsClock.tick(constant['FPS'])
 
     return play(screen, call_state, level + 1, balls)
 
