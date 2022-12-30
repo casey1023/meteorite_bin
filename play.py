@@ -168,7 +168,9 @@ def play(screen, call_state, level = 0, balls = [], planets = [], life = 5):
         pygame.display.flip()
         fpsClock.tick(constant['FPS'])
 
-    return {'from': 'play', 'to': 'play'}, level + 2, [], [], 5
+    constant['finished_level'][level] = 1
+    writeconstant(constant)
+    return {'from': 'play', 'to': 'play'}, level + 1, [], [], 5
 
 if __name__=="__main__":
 
