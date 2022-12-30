@@ -55,7 +55,7 @@ if __name__ == '__main__':
             life = 5
             level = 0
 
-            #threading with the loading pics in the gameover_menu
+            #enter main_menu while threading load_pics
             if first_time:
                 main_ = ThreadWithReturnValue(target = main_menu, args = (screen, current_state))
                 load_0 = ThreadWithReturnValue(target = load_pics, args=(1, 375))
