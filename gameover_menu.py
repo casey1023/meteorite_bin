@@ -5,9 +5,10 @@ from play import *
 from setting import *
 
 #load pic
-pic = []
-for i in range(1, 1501):
-    pic.append(pygame.image.load('res/rick_roll/output_{:0>4}.jpg'.format(i)))
+pic = {}
+def load_pics(a, b):
+    for i in range(a, b):
+        pic[i] = pygame.image.load('res/rick_roll/output_{:0>4}.jpg'.format(i))
 
 def gameover_menu(screen, caller_state):
     #get const
