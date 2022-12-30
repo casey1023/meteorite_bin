@@ -30,13 +30,21 @@ def gameover_menu(screen, caller_state):
         pygame.mixer.init()
         pygame.mixer.music.load('res/rick_roll_cut.mp3')
         pygame.mixer.music.play(-1)
+        music_start_time = time()
+        constant['music_start_time'] = music_start_time
+    
+    #if sync pic
+    cnt_pic = 1
+    if caller_state['from']=='setting_menu':
+        cnt_pic = round((time() - constant['music_start_time']) * 25)
+    print(cnt_pic)
+
 
     #button init
     start_button=   button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 3, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Start", not_fill_in = 1)
     setting_button= button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 4, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Setting", not_fill_in = 1)
     quit_button=    button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 5, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Quit", not_fill_in = 1)
     
-    cnt_pic = 1
     while True:
         for event in pygame.event.get():
             #quit
@@ -55,6 +63,7 @@ def gameover_menu(screen, caller_state):
                 
                 #setting_menu
                 elif setting_button.isOver(pos):
+                    writeconstant(constant)
                     return {'from': 'gameover_menu', 'to': 'setting_menu'}
                 
                 #quit

@@ -91,7 +91,7 @@ if __name__ == '__main__':
         #setting menu
         elif current_state['to'] == 'setting_menu':
             #start setting_menu and get new constant
-            return_state,constant = setting_menu(screen, current_state, constant)
+            return_state, constant = setting_menu(screen, current_state, constant)
 
             #audio effect
             click_sound.set_volume(constant["sound_volume"])
