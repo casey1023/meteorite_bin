@@ -35,7 +35,7 @@ def gameover_menu(screen, caller_state):
     #if sync pic
     cnt_pic = 1
     if caller_state['from']=='setting_menu':
-        cnt_pic = round((time() - constant['music_start_time']) * 25)
+        cnt_pic = round((time() - constant['music_start_time']) * 25) % 1501
     print(cnt_pic)
 
 
