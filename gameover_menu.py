@@ -3,12 +3,10 @@ from button import *
 from button import *
 from play import *
 from setting import *
+from load_pics import *
 
-#load pic
-pic = {}
-def load_pics(a, b):
-    for i in range(a, b):
-        pic[i] = pygame.image.load('res/rick_roll/output_{:0>4}.jpg'.format(i))
+def load():
+    load_gameover_pics()
 
 def gameover_menu(screen, caller_state):
     #get const
@@ -85,6 +83,6 @@ def gameover_menu(screen, caller_state):
         if cnt_pic >= 1500:
             cnt_pic = 1
         pygame.display.flip()
-        fpsClock.tick(25.00)
+        fpsClock.tick(25)
 
         ###############DNF

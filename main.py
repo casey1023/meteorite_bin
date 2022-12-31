@@ -57,24 +57,8 @@ if __name__ == '__main__':
 
             #enter main_menu while threading load_pics
             if first_time:
-                main_ = ThreadWithReturnValue(target = main_menu, args = (screen, current_state))
-                load_0 = ThreadWithReturnValue(target = load_pics, args=(1, 375))
-                load_1 = ThreadWithReturnValue(target = load_pics, args=(375, 750))
-                load_2 = ThreadWithReturnValue(target = load_pics, args = (750, 1125))
-                load_3 = ThreadWithReturnValue(target = load_pics, args = (1125, 1501))
-
-                main_.start()
-                load_0.start()
-                load_1.start()
-                load_2.start()
-                load_3.start()
-
-                return_state = main_.join()
-                load_0.join()
-                load_1.join()
-                load_2.join()
-                load_3.join()
-
+                load()
+                return_state = main_menu(screen, current_state)
                 first_time = False
             else:
                 return_state = main_menu(screen, current_state)
