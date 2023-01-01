@@ -9,8 +9,8 @@ from time import time
 from level_map import *
 
 #get const
-constant = readconstant()
-locals().update(constant)
+# constant = readconstant()
+# locals().update(constant)
 
 #audio effect init
 pygame.mixer.init()
@@ -26,10 +26,10 @@ invt=2
 def randinscreen():
     return (random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT))
 
-def play(screen, call_state, level = 0, balls = [], planets = [], life = 5):
+def play(screen, call_state,constant, level = 0, balls = [], planets = [], life = 5):
     #get const
-    constant = readconstant()
-    locals().update(constant)
+    # constant = readconstant()
+    # locals().update(constant)
 
     #update ball FPS
     ball.FPS_update()
@@ -117,6 +117,7 @@ def play(screen, call_state, level = 0, balls = [], planets = [], life = 5):
                 balls.remove(i)
                 #audio effect
                 pop_sound.set_volume(constant["sound_volume"])
+                print(constant["sound_volume"])
                 pop_sound.play()
 			
 
@@ -142,6 +143,7 @@ def play(screen, call_state, level = 0, balls = [], planets = [], life = 5):
                     if p.life == 0:
                         planets.remove(p)
                         smoke_bomb_sound.set_volume(constant["sound_volume"])
+                        print(constant["sound_volume"])
                         smoke_bomb_sound.play()
 						
 						#handle explode planet

@@ -90,7 +90,7 @@ if __name__ == '__main__':
         #play
         elif current_state['to'] == 'play':
             #start play and get current play state
-            return_state, level, balls, planets, life = play(screen, current_state, level, balls, planets, life)
+            return_state, level, balls, planets, life = play(screen, current_state,constant, level, balls, planets, life)
 
         #pause menu
         elif current_state['to'] == 'pause_menu':
