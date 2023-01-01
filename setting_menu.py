@@ -37,7 +37,7 @@ def setting_menu(screen, call_state,constant):
     sound_slider = slider(SCREEN_WIDTH/7*2,SCREEN_WIDTH/7*5,SCREEN_HEIGHT/8 * 4, initial = constant["sound_volume"], pop_sound = True)
     FPS60_checkbox = Checkbox(screen, SCREEN_WIDTH/5 * 2, SCREEN_HEIGHT/8 * 5, caption = '60', current_FPS = constant['FPS'])
     FPS30_checkbox = Checkbox(screen, SCREEN_WIDTH/5 * 3, SCREEN_HEIGHT/8*5, caption = '30', current_FPS = constant['FPS'])
-    print(sound_slider.pop_sound)
+    #print(sound_slider.pop_sound)
     
 
     # pygame.mixer.music.load('res/Winterglade.mp3') 

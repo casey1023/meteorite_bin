@@ -26,10 +26,11 @@ class ball():
     def move(self, mp):
         p = self.position
         # d=1/ (mp-p).length()**2 * (mp-p).normalize()*2000
-        if ball.ball_FPS == 60:
-            d = (mp - self.position) * 0.0015
-        elif ball.ball_FPS == 30:
-            d = (mp - self.position) * 0.0015 * 4
+        # if ball.ball_FPS == 60:
+        #     d = (mp - self.position) * 0.0015
+        # elif ball.ball_FPS == 30:
+        #     d = (mp - self.position) * 0.0015 * 4
+        d = (mp - self.position) * 0.0015 * (60/ball.ball_FPS)
         self.v += d
 
         #set speed limit
