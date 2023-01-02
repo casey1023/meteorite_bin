@@ -27,7 +27,7 @@ class ball():
         p = self.position
 
         # gravity
-        d = 1 / (mp-p).length()**2 * (mp-p).normalize() * 2000 * (60/ball.ball_FPS)
+        d = 1 / (mp-p).length()**2 * (mp-p).normalize() * 1000 * (60/ball.ball_FPS)
         # original
         # d = (mp - self.position) * 0.0015 * (60/ball.ball_FPS)
         self.v += d
@@ -68,5 +68,4 @@ class ball():
     def FPS_update(constant):
         # constant = readconstant()
         # locals().update(constant)
-        print(constant)
         ball.ball_FPS = constant['FPS']

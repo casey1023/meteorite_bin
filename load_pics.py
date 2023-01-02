@@ -9,7 +9,7 @@ def load_pics(a, b):
         pic[i] = pygame.image.load('res/rick_roll/output_{:0>4}.jpg'.format(i))
 
 def load_gameover_pics():
-    threads = 6
+    threads = 10
     start = 1
     end = 1501
     num = [start]

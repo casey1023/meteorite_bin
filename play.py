@@ -30,7 +30,6 @@ def play(screen, call_state,constant, level = 0, balls = [], planets = [], life 
     #get const
     # constant = readconstant()
     # locals().update(constant)
-
     #update ball FPS
     ball.FPS_update(constant)
 
