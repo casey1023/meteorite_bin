@@ -4,6 +4,7 @@ from gameinit import *
 #### DNF
 
 def pause_menu(screen, call_state):
+    pygame.mouse.set_visible(1)
     #const init
     constant = readconstant()
     locals().update(constant)

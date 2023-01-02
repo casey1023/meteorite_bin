@@ -8,6 +8,7 @@ constant = readconstant()
 locals().update(constant)
 
 class ball():
+    ball_FPS = constant['FPS']
     def __init__(self, screen, position, init_v = 0, radius = 5):
         self.position = Vector2(position)
         self.radius = radius
@@ -24,22 +25,26 @@ class ball():
     
     def move(self, mp):
         p = self.position
-        # d=1/ (mp-p).length()**2 * (mp-p).normalize()*2000
-        d = (mp - self.position) * 0.0015
+
+        # gravity
+        #d = 1 / (mp-p).length()**2 * (mp-p).normalize() * 1000 * (60/ball.ball_FPS)
+        # original
+        d = (mp - self.position) * 0.0015 * (60/ball.ball_FPS)
         self.v += d
+        #  * (60/ball.ball_FPS)
 
         #set speed limit
         speedlimit = 12
         if self.v.length() > speedlimit:
             self.v = self.v.normalize() * speedlimit
-        self.position += self.v
+        self.position += self.v * (60/ball.ball_FPS)
 
         #check if hit boarder
-        if self.position.x < 0 or self.position.x > SCREEN_WIDTH:
+        if (self.position.x < 0 and self.v.x < 0) or (self.position.x > SCREEN_WIDTH and self.v.x > 0):
             self.v.x = -self.v.x
             self.v = self.v * 0.95
 
-        if self.position.y < 0 or self.position.y > SCREEN_HEIGHT:
+        if (self.position.y < 0 and self.v.y < 0) or (self.position.y > SCREEN_HEIGHT and self.v.y > 0):
             self.v.y = -self.v.y
             self.v = self.v * 0.95
 
@@ -59,3 +64,8 @@ class ball():
             # print("set to not invincible")
             self.invincible = False
         return self.invincible
+    
+    def FPS_update(constant):
+        # constant = readconstant()
+        # locals().update(constant)
+        ball.ball_FPS = constant['FPS']

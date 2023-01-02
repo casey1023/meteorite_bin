@@ -27,9 +27,10 @@ class basic_planet():
         self.offset = offset
 
     def draw(self):
-        pie(self.screen, INVBLUE, self.position, self.radius + 3, 0,\
+        pie(self.screen,BLUE,\
+                 self.position, self.radius + 2, 0,\
             360 * (time() - self.t) / (self.shootinterval + self.offset * self.beforeoffset))
-        pygame.draw.circle(self.screen,BLUE, self.position, self.radius, 0)
+        pygame.draw.circle(self.screen,INVBLUE, self.position, self.radius, 0)
         font = pygame.font.SysFont(font__, 20)
         text = font.render(str(self.life), 1, WHITE)
         text_rect = text.get_rect(center = self.position)
@@ -37,12 +38,16 @@ class basic_planet():
 
     def addball(self, mp):
         if time() - self.t >= self.shootinterval + self.offset * self.beforeoffset:
+            #print(time() - self.t , self.shootinterval , self.offset , self.beforeoffset)
             self.t = time()
             self.beforeoffset = False
             return [ball(self.screen, self.position + (mp - self.position).normalize() * self.radius * 1.3,\
                 (mp - self.position).normalize() * 6)]
         else:
-        	return 0
+            return 0
+    def reset_time(self):
+        self.t = time()
+        return None
 
 
 class double_shoot_planet():
@@ -87,9 +92,9 @@ class triple_shoot_planet():
         self.offset = offset
 
     def draw(self):
-        pie(self.screen, INVGREEN, self.position, self.radius + 3, 0,\
+        pie(self.screen, GREEN, self.position, self.radius + 3, 0,\
              360 * (time() - self.t) / (self.shootinterval + self.offset * self.beforeoffset))
-        pygame.draw.circle(self.screen, GREEN, self.position, self.radius, 0)
+        pygame.draw.circle(self.screen, INVGREEN, self.position, self.radius, 0)
         font = pygame.font.SysFont(font__, 20)
         text = font.render(str(self.life), 1, WHITE)
         text_rect = text.get_rect(center = self.position)
@@ -105,6 +110,9 @@ class triple_shoot_planet():
             return [b1, b2, b3]
         else:
             return 0
+    def reset_time(self):
+        self.t = time()
+        return None
 
 class explode_planet():
     def __init__(self, screen, position, offset = 0, life = 1, radius = 20, shootinterval = 4):
@@ -118,9 +126,9 @@ class explode_planet():
         self.offset = offset
 
     def draw(self):
-        pie(self.screen, INVRED, self.position, self.radius + 3, 0, \
+        pie(self.screen, RED, self.position, self.radius + 3, 0, \
             360 * (time() - self.t) / (self.shootinterval + self.offset * self.beforeoffset))
-        pygame.draw.circle(self.screen, RED, self.position, self.radius, 0)
+        pygame.draw.circle(self.screen, INVRED, self.position, self.radius, 0)
         font = pygame.font.SysFont(font__, 20)
         text = font.render(str(self.life), 1, WHITE)
         text_rect = text.get_rect(center = self.position)
@@ -135,5 +143,9 @@ class explode_planet():
         else:
             return 0
         
-    def explode(self):
+    def explode(self,mp):
         return [ball(self.screen, self.position + (mp - self.position).normalize().rotate(i * 72) * self.radius * 1.3, (mp - self.position).normalize() * 6) for i in range(5)]
+    
+    def reset_time(self):
+        self.t = time()
+        return None
