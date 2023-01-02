@@ -61,9 +61,9 @@ class triple_shoot_planet():
         self.offset = offset
 
     def draw(self):
-        pie(self.screen, INVGREEN, self.position, self.radius + 3, 0,\
+        pie(self.screen, GREEN, self.position, self.radius + 3, 0,\
              360 * (time() - self.t) / (self.shootinterval + self.offset * self.beforeoffset))
-        pygame.draw.circle(self.screen, GREEN, self.position, self.radius, 0)
+        pygame.draw.circle(self.screen, INVGREEN, self.position, self.radius, 0)
         font = pygame.font.SysFont(font__, 20)
         text = font.render(str(self.life), 1, WHITE)
         text_rect = text.get_rect(center = self.position)
@@ -95,9 +95,9 @@ class explode_planet():
         self.offset = offset
 
     def draw(self):
-        pie(self.screen, INVRED, self.position, self.radius + 3, 0, \
+        pie(self.screen, RED, self.position, self.radius + 3, 0, \
             360 * (time() - self.t) / (self.shootinterval + self.offset * self.beforeoffset))
-        pygame.draw.circle(self.screen, RED, self.position, self.radius, 0)
+        pygame.draw.circle(self.screen, INVRED, self.position, self.radius, 0)
         font = pygame.font.SysFont(font__, 20)
         text = font.render(str(self.life), 1, WHITE)
         text_rect = text.get_rect(center = self.position)
