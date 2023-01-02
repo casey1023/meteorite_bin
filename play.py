@@ -41,6 +41,7 @@ def play(screen, call_state,constant, level = 0, balls = [], planets = [], life 
     t = time()		#get start time
 
     my_font = pygame.font.SysFont(font__, 30)
+    highest_rank_font = pygame.font.SysFont(font__, 25)
 
     #handle if pause
     if call_state["from"] == "pause_menu" and len(planets):
