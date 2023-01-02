@@ -25,19 +25,19 @@ class ball():
     
     def move(self, mp):
         p = self.position
-        # d=1/ (mp-p).length()**2 * (mp-p).normalize()*2000
-        # if ball.ball_FPS == 60:
-        #     d = (mp - self.position) * 0.0015
-        # elif ball.ball_FPS == 30:
-        #     d = (mp - self.position) * 0.0015 * 4
-        d = (mp - self.position) * 0.0015 * (60/ball.ball_FPS)
-        self.v += d
+        #d = 1 / (mp-p).length()**2 * (mp-p).normalize() * 2000
+        if ball.ball_FPS == 60:
+            d = 1 / (mp-p).length()**2 * (mp-p).normalize() * 2000
+        elif ball.ball_FPS == 30:
+            d = 1 / (mp-p).length()**2 * (mp-p).normalize() * 2000
+        #d = (mp - self.position) * 0.0015 * (60/ball.ball_FPS)
+        self.v += d * (60/ball.ball_FPS)
 
         #set speed limit
         speedlimit = 12
         if self.v.length() > speedlimit:
             self.v = self.v.normalize() * speedlimit
-        self.position += self.v
+        self.position += self.v * (60/ball.ball_FPS)
 
         #check if hit boarder
         if self.position.x < 0 or self.position.x > SCREEN_WIDTH:
