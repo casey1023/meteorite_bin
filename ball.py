@@ -25,13 +25,13 @@ class ball():
     
     def move(self, mp):
         p = self.position
-        #d = 1 / (mp-p).length()**2 * (mp-p).normalize() * 2000
-        if ball.ball_FPS == 60:
-            d = 1 / (mp-p).length()**2 * (mp-p).normalize() * 2000
-        elif ball.ball_FPS == 30:
-            d = 1 / (mp-p).length()**2 * (mp-p).normalize() * 2000
-        #d = (mp - self.position) * 0.0015 * (60/ball.ball_FPS)
-        self.v += d * (60/ball.ball_FPS)
+
+        # gravity
+        d = 1 / (mp-p).length()**2 * (mp-p).normalize() * 2000 * (60/ball.ball_FPS)
+        # original
+        # d = (mp - self.position) * 0.0015 * (60/ball.ball_FPS)
+        self.v += d
+        #  * (60/ball.ball_FPS)
 
         #set speed limit
         speedlimit = 12
@@ -40,11 +40,11 @@ class ball():
         self.position += self.v * (60/ball.ball_FPS)
 
         #check if hit boarder
-        if self.position.x < 0 or self.position.x > SCREEN_WIDTH:
+        if (self.position.x < 0 and self.v.x < 0) or (self.position.x > SCREEN_WIDTH and self.v.x > 0):
             self.v.x = -self.v.x
             self.v = self.v * 0.95
 
-        if self.position.y < 0 or self.position.y > SCREEN_HEIGHT:
+        if (self.position.y < 0 and self.v.y < 0) or (self.position.y > SCREEN_HEIGHT and self.v.y > 0):
             self.v.y = -self.v.y
             self.v = self.v * 0.95
 
@@ -68,4 +68,5 @@ class ball():
     def FPS_update(constant):
         # constant = readconstant()
         # locals().update(constant)
+        print(constant)
         ball.ball_FPS = constant['FPS']

@@ -37,5 +37,6 @@ level_init.append({"basic_planet":[[(SCREEN_WIDTH*10/30,SCREEN_HEIGHT*10/30),1,2
 #lv14
 # #lvmax
 
-title=["idk" for i in range(10)]
+title=["medium" for i in range(10)]
 title[0]="Basic"
+title[8]="Hard"

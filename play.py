@@ -117,7 +117,6 @@ def play(screen, call_state,constant, level = 0, balls = [], planets = [], life 
                 balls.remove(i)
                 #audio effect
                 pop_sound.set_volume(constant["sound_volume"])
-                print(constant["sound_volume"])
                 pop_sound.play()
 			
 
@@ -143,7 +142,6 @@ def play(screen, call_state,constant, level = 0, balls = [], planets = [], life 
                     if p.life == 0:
                         planets.remove(p)
                         smoke_bomb_sound.set_volume(constant["sound_volume"])
-                        print(constant["sound_volume"])
                         smoke_bomb_sound.play()
 						
 						#handle explode planet
@@ -168,7 +166,6 @@ def play(screen, call_state,constant, level = 0, balls = [], planets = [], life 
         text_rect = titletext.get_rect(center = (SCREEN_WIDTH / 2, 20))
         screen.blit(titletext, text_rect)
         pygame.display.flip()
-        print(f"going to tick {constant['FPS']}")
         fpsClock.tick(constant['FPS'])
 
     constant['finished_level'][level] = 1

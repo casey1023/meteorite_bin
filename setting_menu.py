@@ -79,6 +79,7 @@ def setting_menu(screen, call_state,constant):
         pygame.mixer.music.set_volume(constant["bgm_volume"])
         pop_sound.set_volume(constant["sound_volume"])
         pygame.display.flip()
+        writeconstant(constant)
         fpsClock.tick(FPS)
 
 if __name__=="__main__":
