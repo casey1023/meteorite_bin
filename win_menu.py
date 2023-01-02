@@ -24,6 +24,7 @@ def win_menu(screen, caller_state):
 
     if caller_state['from']=='play':
         pygame.mixer.music.fadeout(2500)
+        end_sound.set_volume(constant["sound_volume"])
         end_sound.play()
 
     screen.blit(pic_win_new,(0,0))

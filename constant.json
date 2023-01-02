@@ -53,8 +53,8 @@
     ],
     "font__": "Comic Sans MS",
     "FPS": 60,
-    "bgm_volume": 0.8,
-    "sound_volume": 0.8,
+    "bgm_volume": 0.0,
+    "sound_volume": 0.0,
     "music_start_time": -1,
     "finished_level": [
         1,
