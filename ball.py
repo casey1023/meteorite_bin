@@ -30,6 +30,7 @@ class ball():
         #     d = (mp - self.position) * 0.0015
         # elif ball.ball_FPS == 30:
         #     d = (mp - self.position) * 0.0015 * 4
+        print(ball.ball_FPS)
         d = (mp - self.position) * 0.0015 * (60/ball.ball_FPS)
         self.v += d
 
@@ -65,7 +66,7 @@ class ball():
             self.invincible = False
         return self.invincible
     
-    def FPS_update():
-        constant = readconstant()
-        locals().update(constant)
+    def FPS_update(constant):
+        # constant = readconstant()
+        # locals().update(constant)
         ball.ball_FPS = constant['FPS']
