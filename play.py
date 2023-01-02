@@ -151,7 +151,7 @@ def play(screen, call_state,constant, level = 0, balls = [], planets = [], life 
                             balls.remove(i)
 					
 					#remove dead planet
-                    if p.life == 0:
+                    if p.life <= 0:
                         planets.remove(p)
                         smoke_bomb_sound.set_volume(constant["sound_volume"])
                         smoke_bomb_sound.play()
