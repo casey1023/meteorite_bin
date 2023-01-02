@@ -96,6 +96,7 @@ if __name__ == '__main__':
         elif current_state['to'] == 'pause_menu':
             #start pause_menu
             return_state = pause_menu(screen, current_state)
+            click_sound.play()
         
         #setting menu
         elif current_state['to'] == 'setting_menu':

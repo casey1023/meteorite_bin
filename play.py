@@ -48,7 +48,7 @@ def play(screen, call_state,constant, level = 0, balls = [], planets = [], life 
     #highest lvl text
     highest_level_font = pygame.font.SysFont(font__, 25)
     highest_level_text = highest_level_font.render("HIGHEST_LVL:" + str(highest_level), True, WHITE)
-    highest_level_text_rect = highest_level_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/15))
+    highest_level_text_rect = highest_level_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/10))
     screen.blit(highest_level_text, highest_level_text_rect)
 
     #handle if pause
@@ -176,7 +176,7 @@ def play(screen, call_state,constant, level = 0, balls = [], planets = [], life 
         lifetext = my_font.render('Life : ' + str(life), False, WHITE)
         screen.blit(lifetext, (5, 3))
         lvltext = my_font.render('LVL : ' + str(level), False, WHITE)
-        screen.blit(lvltext, (SCREEN_WIDTH - 100, 3))
+        screen.blit(lvltext, (SCREEN_WIDTH - 120, 3))
         screen.blit(highest_level_text, highest_level_text_rect)
         titletext = my_font.render(title[level], False, WHITE)
         text_rect = titletext.get_rect(center = (SCREEN_WIDTH / 2, 20))
