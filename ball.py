@@ -25,6 +25,7 @@ class ball():
     
     def move(self, mp):
         p = self.position
+<<<<<<< HEAD
         #d = 1 / (mp-p).length()**2 * (mp-p).normalize() * 2000
         if ball.ball_FPS == 60:
             d = 1 / (mp-p).length()**2 * (mp-p).normalize() * 2000
@@ -32,6 +33,16 @@ class ball():
             d = 1 / (mp-p).length()**2 * (mp-p).normalize() * 2000
         #d = (mp - self.position) * 0.0015 * (60/ball.ball_FPS)
         self.v += d * (60/ball.ball_FPS)
+=======
+        # d=1/ (mp-p).length()**2 * (mp-p).normalize()*2000
+        # if ball.ball_FPS == 60:
+        #     d = (mp - self.position) * 0.0015
+        # elif ball.ball_FPS == 30:
+        #     d = (mp - self.position) * 0.0015 * 4
+        print(ball.ball_FPS)
+        d = (mp - self.position) * 0.0015 * (60/ball.ball_FPS)
+        self.v += d
+>>>>>>> 5b94ded17f02e9396b73b631eae4d7c54110e554
 
         #set speed limit
         speedlimit = 12
@@ -65,7 +76,7 @@ class ball():
             self.invincible = False
         return self.invincible
     
-    def FPS_update():
-        constant = readconstant()
-        locals().update(constant)
+    def FPS_update(constant):
+        # constant = readconstant()
+        # locals().update(constant)
         ball.ball_FPS = constant['FPS']

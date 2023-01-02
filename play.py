@@ -168,6 +168,7 @@ def play(screen, call_state,constant, level = 0, balls = [], planets = [], life 
         text_rect = titletext.get_rect(center = (SCREEN_WIDTH / 2, 20))
         screen.blit(titletext, text_rect)
         pygame.display.flip()
+        print(f"going to tick {constant['FPS']}")
         fpsClock.tick(constant['FPS'])
 
     constant['finished_level'][level] = 1
