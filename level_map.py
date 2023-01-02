@@ -31,13 +31,14 @@ level_init.append({"basic_planet":[[(SCREEN_WIDTH*5/30,SCREEN_HEIGHT*5/30),0,1,1
 level_init.append({"basic_planet":[[(SCREEN_WIDTH*10/30,SCREEN_HEIGHT*10/30),1,2,20,20],[(SCREEN_WIDTH*20/30,SCREEN_HEIGHT*10/30),1,2,20,20]
 ,[(SCREEN_WIDTH*15/30,SCREEN_HEIGHT*25/30),0,1,20,1.5],[(SCREEN_WIDTH*13/30,SCREEN_HEIGHT*24.4/30),1,1,20,1.5],[(SCREEN_WIDTH*17/30,SCREEN_HEIGHT*24.4/30),1,1,20,1.5],[(SCREEN_WIDTH*11/30,SCREEN_HEIGHT*23.5/30),2,1,20,1.5],[(SCREEN_WIDTH*19/30,SCREEN_HEIGHT*23.5/30),2,1,20,1.5],[(SCREEN_WIDTH*9/30,SCREEN_HEIGHT*22/30),3,1,20,1.5],[(SCREEN_WIDTH*21/30,SCREEN_HEIGHT*22/30),3,1,20,1.5]]})
 #lv10
-level_init.append({"basic_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4),0,1,20,3],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),1.5,1,20,3]]})
+level_init.append({"triple_shoot_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4),0,1,20,3],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),1.5,1,20,3]]})
 #lv11
+level_init.append({"explode_planet":[[(SCREEN_WIDTH/4,SCREEN_HEIGHT/4),0,1,20,3],[(SCREEN_WIDTH*3/4,SCREEN_HEIGHT*3/4),1.5,1,20,3]]})
 #lv12
 #lv13
 #lv14
 # #lvmax
 
-title=["medium" for i in range(10)]
+title=["medium" for i in range(11)]
 title[0]="Basic"
 title[8]="Hard"
