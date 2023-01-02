@@ -32,7 +32,7 @@ def play(screen, call_state,constant, level = 0, balls = [], planets = [], life 
     # locals().update(constant)
 
     #update ball FPS
-    ball.FPS_update()
+    ball.FPS_update(constant)
 
     fpsClock = pygame.time.Clock()
     t = time()		#get start time
