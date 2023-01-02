@@ -31,6 +31,9 @@ def play(screen, call_state,constant, level = 0, balls = [], planets = [], life 
     # constant = readconstant()
     # locals().update(constant)
 
+    #hide cursor
+    pygame.mouse.set_visible(0)
+
     #update ball FPS
     ball.FPS_update(constant)
 

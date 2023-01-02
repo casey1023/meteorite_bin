@@ -3,6 +3,8 @@ from gameinit import *
 from play import *
 from setting import *
 
+pic_setting = pygame.image.load("res/stars.jpg")
+
 def main_menu(screen, call_state):
     fpsClock = pygame.time.Clock()
     
@@ -51,6 +53,8 @@ def main_menu(screen, call_state):
         mouse_pos = pygame.mouse.get_pos()
 
         #draw button
+        screen.blit(pic_setting,(0,0))
+        screen.blit(title, text_rect)
         start_button.draw(screen,mouse_pos)
         setting_button.draw(screen,mouse_pos)
         intro_button.draw(screen,mouse_pos)

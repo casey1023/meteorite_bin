@@ -4,6 +4,7 @@ from play import *
 from setting import *
 
 def res_menu(screen, call_state):
+    pygame.mouse.set_visible(1)
     fpsClock = pygame.time.Clock()
     
     #screen init
@@ -16,6 +17,7 @@ def res_menu(screen, call_state):
     #words
     font = pygame.font.SysFont(font__, 18)
     words=['Picture Resource:',
+        'Main menu: Hubble telescope',
         'Ending menu: Image by rorozoa on Freepik',
         'Setting: Freepik',
         'Music and Sound Resource:',

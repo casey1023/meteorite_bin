@@ -9,6 +9,7 @@ def load():
     load_gameover_pics()
 
 def gameover_menu(screen, caller_state):
+    pygame.mouse.set_visible(1)
     #get const
     constant=readconstant()
     locals().update(constant)

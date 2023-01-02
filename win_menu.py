@@ -9,6 +9,7 @@ pic_win_new = pygame.transform.scale(pic_win,(SCREEN_WIDTH,SCREEN_HEIGHT))
 
 
 def win_menu(screen, caller_state):
+    pygame.mouse.set_visible(1)
     #get const
     constant=readconstant()
     locals().update(constant)

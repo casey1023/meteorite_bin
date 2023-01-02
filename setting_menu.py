@@ -8,6 +8,7 @@ pic_setting = pygame.image.load("res/setting.jpg")
 pic_setting_new = pygame.transform.scale(pic_setting,(SCREEN_WIDTH,SCREEN_HEIGHT))
 
 def setting_menu(screen, call_state,constant):
+    pygame.mouse.set_visible(1)
     fpsClock = pygame.time.Clock()
 
     screen.fill(BLACK)
