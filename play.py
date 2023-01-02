@@ -87,7 +87,7 @@ def play(screen, call_state,constant, level = 0, balls = [], planets = [], life 
                 elif event.key == pygame.K_DOWN:
                     planets.clear()
                     balls.clear()
-                    return play(screen, call_state, level + 1)
+                    return {'from': 'play', 'to': 'play'}, level + 1, [], [], 5
 			
 			#quit game
             elif event.type == pygame.QUIT:
