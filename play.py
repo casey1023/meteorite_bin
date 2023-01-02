@@ -166,7 +166,7 @@ def play(screen, call_state,constant, level = 0, balls = [], planets = [], life 
         screen.blit(lifetext, (5, 3))
         lvltext = my_font.render('LVL : ' + str(level), False, WHITE)
         screen.blit(lvltext, (SCREEN_WIDTH - 100, 3))
-        highest_lvltext = my_font.render('HIGHEST_LVL : ' + str(highest_level), False, WHITE)
+        highest_lvltext = highest_rank_font.render('HIGHEST_LVL : ' + str(highest_level), False, WHITE)
         screen.blit(highest_lvltext, (SCREEN_WIDTH / 9 * 6, SCREEN_WIDTH / 15))
         titletext = my_font.render(title[level], False, WHITE)
         text_rect = titletext.get_rect(center = (SCREEN_WIDTH / 2, 20))
