@@ -47,6 +47,7 @@ if __name__ == '__main__':
         current_state = stack[0]
         del stack[0]
         return_state = 0
+        #print(current_state['to'])
         #main_menu
         if current_state['to'] == 'main_menu':
             #renew game state
@@ -130,7 +131,7 @@ if __name__ == '__main__':
             life = 5
             level = 0
             #start end_menu
-            return_state = gameover_menu(screen, current_state)
+            return_state, constant = gameover_menu(screen, current_state)
             #audio effect
             click_sound.play()
         
