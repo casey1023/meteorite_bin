@@ -49,7 +49,7 @@ def gameover_menu(screen, caller_state):
         for event in pygame.event.get():
             #quit
             if event.type == pygame.QUIT:
-                return {'from': 'gameover_menu', 'to': 'quit'}
+                return {'from': 'gameover_menu', 'to': 'quit'}, constant
             
             if event.type == pygame.MOUSEBUTTONUP:
                 pos = pygame.mouse.get_pos()
@@ -59,16 +59,16 @@ def gameover_menu(screen, caller_state):
                     pygame.mixer.init()
                     pygame.mixer.music.load('res/Winterglade.mp3') 
                     pygame.mixer.music.play(-1, start=2)
-                    return {'from': 'gameover_menu', 'to': 'play'}
+                    return {'from': 'gameover_menu', 'to': 'play'}, constant
                 
                 #setting_menu
                 elif setting_button.isOver(pos):
                     writeconstant(constant)
-                    return {'from': 'gameover_menu', 'to': 'setting_menu'}
+                    return {'from': 'gameover_menu', 'to': 'setting_menu'}, constant
                 
                 #quit
                 elif quit_button.isOver(pos):
-                    return {'from': 'gameover_menu', 'to': 'quit'}
+                    return {'from': 'gameover_menu', 'to': 'quit'}, constant
         
         #get mouse pos
         mouse_pos = pygame.mouse.get_pos()

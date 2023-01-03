@@ -113,7 +113,7 @@ def play(screen, call_state,constant, level = 0, balls = [], planets = [], life 
         mp=Vector2(pygame.mouse.get_pos())	#get mouse position
 
 		#update mouse position and check if the player is died
-        if life != 0:
+        if life > 0:
             pygame.draw.circle(screen, WHITE, mp, life + 5, 0)
         else:
             balls.clear()
