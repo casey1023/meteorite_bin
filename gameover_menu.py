@@ -43,7 +43,8 @@ def gameover_menu(screen, caller_state):
     #button init
     start_button=   button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 3, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Start", not_fill_in = 1)
     setting_button= button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 4, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Setting", not_fill_in = 1)
-    quit_button=    button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 5, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Quit", not_fill_in = 1)
+    menu_button=    button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 5, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Main menu", not_fill_in = 1)
+    quit_button=    button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 6, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Quit", not_fill_in = 1)
     
     while True:
         for event in pygame.event.get():
@@ -66,6 +67,13 @@ def gameover_menu(screen, caller_state):
                     writeconstant(constant)
                     return {'from': 'gameover_menu', 'to': 'setting_menu'}, constant
                 
+                #main_menu
+                elif menu_button.isOver(pos):
+                    pygame.mixer.init()
+                    pygame.mixer.music.load('res/Winterglade.mp3') 
+                    pygame.mixer.music.play(-1, start=2)
+                    return {'from': 'gameover_menu', 'to': 'main_menu'}, constant
+                
                 #quit
                 elif quit_button.isOver(pos):
                     return {'from': 'gameover_menu', 'to': 'quit'}, constant
@@ -78,6 +86,7 @@ def gameover_menu(screen, caller_state):
         #draw button
         start_button.draw(screen,mouse_pos)
         setting_button.draw(screen,mouse_pos)
+        menu_button.draw(screen,mouse_pos)
         quit_button.draw(screen,mouse_pos)
         
         cnt_pic += 1

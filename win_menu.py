@@ -34,7 +34,8 @@ def win_menu(screen, caller_state):
     #button init
     start_button=   button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 3, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Start")
     setting_button= button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 4, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Setting")
-    quit_button=    button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 5, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Quit")
+    menu_button=    button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 5, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Main menu")
+    quit_button=    button(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 7 * 6, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 8, text = "Quit")
     
     while True:
         for event in pygame.event.get():
@@ -57,6 +58,12 @@ def win_menu(screen, caller_state):
                         pygame.mixer.music.play(-1, start=2)
                     return {'from': 'win_menu', 'to': 'setting_menu'}
                 
+                #main_menu
+                elif menu_button.isOver(pos):
+                    if caller_state['from'] =='play':
+                        pygame.mixer.music.play(-1, start=2)
+                    return {'from': 'win_menu', 'to': 'main_menu'}
+                
                 #quit
                 elif quit_button.isOver(pos):
                     return {'from': 'win_menu', 'to': 'quit'}
@@ -67,6 +74,7 @@ def win_menu(screen, caller_state):
         #draw button
         start_button.draw(screen,mouse_pos)
         setting_button.draw(screen,mouse_pos)
+        menu_button.draw(screen,mouse_pos)
         quit_button.draw(screen,mouse_pos)
 
         pygame.display.flip()
